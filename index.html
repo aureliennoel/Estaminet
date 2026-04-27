@@ -1,20 +1,12 @@
-<!-- =========================================================
-L'AMUSETTE — POINTEUSE PREMIUM
-INDEX.HTML COMPLET ET STABLE
-VERSION FIX BUG
-========================================================= -->
-
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport"
-      content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>L'amusette — Pointeuse</title>
+<title>L'amusette — Pointeuse Premium</title>
 
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap"
       rel="stylesheet">
@@ -27,34 +19,31 @@ ROOT
 
 :root{
 
-  --navy:#10203a;
-  --navy2:#1c3157;
-  --navy3:#304878;
+  --navy:#13233f;
+  --navy2:#21365d;
 
-  --accent:#b42318;
-  --accent2:#d62828;
+  --accent:#c0392b;
+  --accent2:#e74c3c;
 
-  --green:#1fa971;
+  --green:#27ae60;
 
   --cream:#f8f5f1;
-  --cream2:#f2eee8;
-
   --white:#ffffff;
 
-  --gray:#ece7e0;
-  --gray2:#ddd7ce;
+  --gray:#ece8e2;
+  --gray2:#d9d4cb;
 
   --text:#17253f;
-  --text2:#6f7b92;
-  --text3:#a0a8b8;
+  --text2:#6e7890;
+  --text3:#9ea6b8;
 
   --radius:28px;
 
   --shadow:
-    0 8px 24px rgba(15,23,42,.06);
+    0 10px 30px rgba(15,23,42,.08);
 
   --shadow-lg:
-    0 18px 44px rgba(15,23,42,.14);
+    0 20px 40px rgba(15,23,42,.15);
 
   --font:'DM Sans',sans-serif;
   --font-serif:'DM Serif Display',serif;
@@ -72,22 +61,18 @@ GLOBAL
   -webkit-tap-highlight-color:transparent;
 }
 
-html{
-  scroll-behavior:smooth;
-}
-
 body{
 
   background:
     linear-gradient(
       180deg,
-      var(--cream),
-      var(--cream2)
+      #f9f6f1,
+      #f3eee7
     );
 
-  color:var(--text);
-
   font-family:var(--font);
+
+  color:var(--text);
 
   max-width:430px;
 
@@ -113,31 +98,16 @@ input{
 }
 
 /* =========================================================
-VIEW
+VIEWS
 ========================================================= */
 
 .view{
   display:none;
   padding:0 18px 30px;
-  animation:fade .22s ease;
 }
 
 .view.active{
   display:block;
-}
-
-@keyframes fade{
-
-  from{
-    opacity:0;
-    transform:translateY(8px);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-
 }
 
 /* =========================================================
@@ -146,7 +116,7 @@ HEADER
 
 .header{
 
-  margin:0 -18px 28px;
+  margin:0 -18px 26px;
 
   padding:28px 22px 34px;
 
@@ -164,8 +134,7 @@ HEADER
 
   overflow:hidden;
 
-  box-shadow:
-    0 12px 40px rgba(16,32,58,.22);
+  box-shadow:var(--shadow-lg);
 
 }
 
@@ -181,33 +150,14 @@ HEADER
   border-radius:50%;
 
   background:
-    rgba(255,255,255,.04);
+    rgba(255,255,255,.05);
 
-  top:-110px;
+  top:-120px;
   right:-70px;
 
 }
 
-.header::after{
-
-  content:'';
-
-  position:absolute;
-
-  width:120px;
-  height:120px;
-
-  border-radius:50%;
-
-  background:
-    rgba(214,40,40,.10);
-
-  left:-20px;
-  bottom:-50px;
-
-}
-
-.header-top{
+.logo-row{
 
   display:flex;
   align-items:center;
@@ -220,8 +170,8 @@ HEADER
 
 .logo{
 
-  width:70px;
-  height:70px;
+  width:72px;
+  height:72px;
 
   border-radius:24px;
 
@@ -236,18 +186,18 @@ HEADER
   align-items:center;
   justify-content:center;
 
-  font-size:32px;
+  font-size:34px;
 
   box-shadow:
-    0 10px 28px rgba(214,40,40,.28);
+    0 12px 24px rgba(231,76,60,.25);
 
 }
 
 .brand-title{
 
-  font-size:32px;
-
   color:white;
+
+  font-size:34px;
 
   font-family:var(--font-serif);
 
@@ -257,20 +207,20 @@ HEADER
 
   margin-top:4px;
 
-  font-size:11px;
+  color:
+    rgba(255,255,255,.55);
 
-  text-transform:uppercase;
+  font-size:11px;
 
   letter-spacing:2px;
 
-  color:
-    rgba(255,255,255,.52);
+  text-transform:uppercase;
 
 }
 
-.status{
+.status-row{
 
-  margin-top:24px;
+  margin-top:22px;
 
   display:flex;
   align-items:center;
@@ -297,22 +247,22 @@ HEADER
 
   background:var(--green);
 
-  animation:pulse 1.8s infinite;
+  animation:pulse 1.7s infinite;
 
 }
 
 @keyframes pulse{
 
   0%{
-    box-shadow:0 0 0 0 rgba(31,169,113,.5);
+    box-shadow:0 0 0 0 rgba(39,174,96,.4);
   }
 
   70%{
-    box-shadow:0 0 0 8px rgba(31,169,113,0);
+    box-shadow:0 0 0 10px rgba(39,174,96,0);
   }
 
   100%{
-    box-shadow:0 0 0 0 rgba(31,169,113,0);
+    box-shadow:0 0 0 0 rgba(39,174,96,0);
   }
 
 }
@@ -320,7 +270,7 @@ HEADER
 .status-text{
 
   color:
-    rgba(255,255,255,.84);
+    rgba(255,255,255,.82);
 
   font-size:13px;
 
@@ -330,10 +280,10 @@ HEADER
 
   margin-left:auto;
 
-  font-size:13px;
-
   color:
-    rgba(255,255,255,.45);
+    rgba(255,255,255,.5);
+
+  font-size:13px;
 
 }
 
@@ -344,12 +294,9 @@ CARD
 .card{
 
   background:
-    rgba(255,255,255,.82);
+    rgba(255,255,255,.86);
 
-  backdrop-filter:blur(20px);
-
-  border:
-    1px solid rgba(255,255,255,.66);
+  backdrop-filter:blur(16px);
 
   border-radius:var(--radius);
 
@@ -381,9 +328,9 @@ TIMER
 
   position:absolute;
 
-  top:0;
   left:0;
   right:0;
+  top:0;
 
   height:5px;
 
@@ -416,7 +363,7 @@ TIMER
 
 .timer{
 
-  margin-top:12px;
+  margin-top:14px;
 
   font-size:72px;
 
@@ -444,7 +391,7 @@ TIMER
 
   gap:12px;
 
-  margin-top:26px;
+  margin-top:28px;
 
 }
 
@@ -458,7 +405,7 @@ TIMER
 
   font-weight:700;
 
-  transition:.2s;
+  transition:.18s;
 
 }
 
@@ -472,7 +419,7 @@ TIMER
     linear-gradient(
       145deg,
       var(--navy),
-      var(--navy3)
+      var(--navy2)
     );
 
   color:white;
@@ -550,9 +497,9 @@ STATS
 
   font-weight:700;
 
-  letter-spacing:1px;
-
   text-transform:uppercase;
+
+  letter-spacing:1px;
 
   color:var(--text3);
 
@@ -571,6 +518,18 @@ STATS
 /* =========================================================
 SECTION
 ========================================================= */
+
+.page-title{
+
+  padding:24px 0;
+
+  text-align:center;
+
+  font-size:34px;
+
+  font-family:var(--font-serif);
+
+}
 
 .section-header{
 
@@ -601,7 +560,7 @@ SECTION
     linear-gradient(
       145deg,
       var(--navy),
-      var(--navy3)
+      var(--navy2)
     );
 
   color:white;
@@ -623,7 +582,7 @@ SESSIONS
 .session{
 
   background:
-    rgba(255,255,255,.84);
+    rgba(255,255,255,.88);
 
   border-radius:26px;
 
@@ -649,7 +608,7 @@ SESSIONS
     linear-gradient(
       145deg,
       var(--navy),
-      var(--navy3)
+      var(--navy2)
     );
 
 }
@@ -668,7 +627,7 @@ SESSIONS
 
 .session-hours{
 
-  margin-top:5px;
+  margin-top:4px;
 
   font-size:13px;
 
@@ -684,7 +643,7 @@ SESSIONS
 
 }
 
-.session-actions{
+.actions{
   display:flex;
   gap:8px;
 }
@@ -705,23 +664,7 @@ SESSIONS
 }
 
 .delete{
-  background:#ffe9e9;
-}
-
-/* =========================================================
-PAGE TITLE
-========================================================= */
-
-.page-title{
-
-  padding:24px 0 22px;
-
-  text-align:center;
-
-  font-size:32px;
-
-  font-family:var(--font-serif);
-
+  background:#ffe8e8;
 }
 
 /* =========================================================
@@ -734,8 +677,6 @@ CONTRACT
 
   margin-bottom:18px;
 
-  border-radius:32px;
-
   background:
     linear-gradient(
       145deg,
@@ -743,7 +684,11 @@ CONTRACT
       var(--navy2)
     );
 
+  border-radius:32px;
+
   color:white;
+
+  box-shadow:var(--shadow-lg);
 
 }
 
@@ -758,7 +703,7 @@ CONTRACT
 .contract-badge{
 
   background:
-    rgba(255,255,255,.10);
+    rgba(255,255,255,.1);
 
   padding:8px 14px;
 
@@ -774,16 +719,16 @@ CONTRACT
 
   margin-top:24px;
 
-  font-size:13px;
-
   color:
-    rgba(255,255,255,.62);
+    rgba(255,255,255,.65);
+
+  font-size:13px;
 
 }
 
-.solde-value{
+.solde{
 
-  margin-top:14px;
+  margin-top:12px;
 
   font-size:58px;
 
@@ -799,24 +744,74 @@ CONTRACT
 
   height:12px;
 
-  border-radius:30px;
+  border-radius:20px;
+
+  overflow:hidden;
 
   background:
     rgba(255,255,255,.12);
-
-  overflow:hidden;
 
 }
 
 .progress-bar{
 
-  width:0%;
-
   height:100%;
 
-  border-radius:30px;
+  width:0%;
+
+  border-radius:20px;
 
   background:white;
+
+}
+
+.analytics{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:14px;
+
+  margin-bottom:18px;
+
+}
+
+.analytics-card{
+
+  padding:20px;
+
+}
+
+.analytics-label{
+
+  font-size:11px;
+
+  font-weight:700;
+
+  text-transform:uppercase;
+
+  color:var(--text3);
+
+}
+
+.analytics-value{
+
+  margin-top:10px;
+
+  font-size:30px;
+
+  font-weight:700;
+
+}
+
+.analytics-sub{
+
+  margin-top:6px;
+
+  font-size:12px;
+
+  color:var(--text2);
 
 }
 
@@ -824,14 +819,12 @@ CONTRACT
 SETTINGS
 ========================================================= */
 
-.settings{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-}
-
 .setting{
+
   padding:18px;
+
+  margin-bottom:14px;
+
 }
 
 .setting label{
@@ -867,6 +860,56 @@ SETTINGS
 }
 
 /* =========================================================
+MONTH WEEKS
+========================================================= */
+
+.month-week{
+
+  background:
+    rgba(255,255,255,.88);
+
+  border-radius:24px;
+
+  padding:18px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:12px;
+
+  box-shadow:
+    0 8px 24px rgba(15,23,42,.05);
+
+}
+
+.month-week-title{
+
+  font-size:16px;
+
+  font-weight:700;
+
+}
+
+.month-week-sub{
+
+  margin-top:4px;
+
+  font-size:13px;
+
+  color:var(--text2);
+
+}
+
+.month-week-total{
+
+  font-size:24px;
+
+  font-weight:700;
+
+}
+
+/* =========================================================
 NAVBAR
 ========================================================= */
 
@@ -889,13 +932,13 @@ NAVBAR
   background:
     rgba(255,255,255,.74);
 
-  backdrop-filter:blur(26px);
+  backdrop-filter:blur(24px);
 
   display:flex;
   justify-content:space-around;
 
   box-shadow:
-    0 12px 40px rgba(17,24,39,.12);
+    0 16px 40px rgba(17,24,39,.14);
 
 }
 
@@ -910,8 +953,6 @@ NAVBAR
   gap:6px;
 
   color:var(--text3);
-
-  cursor:pointer;
 
 }
 
@@ -937,7 +978,7 @@ NAVBAR
 .nav-item.active .nav-icon{
 
   background:
-    rgba(16,32,58,.08);
+    rgba(19,35,63,.08);
 
 }
 
@@ -959,11 +1000,13 @@ MODAL
   inset:0;
 
   background:
-    rgba(0,0,0,.42);
+    rgba(0,0,0,.45);
 
   display:none;
 
   align-items:flex-end;
+
+  z-index:999;
 
 }
 
@@ -981,14 +1024,13 @@ MODAL
   border-radius:
     34px 34px 0 0;
 
-  padding:
-    26px 22px 42px;
+  padding:26px 22px 42px;
 
 }
 
 .modal-title{
 
-  font-size:28px;
+  font-size:30px;
 
   font-family:var(--font-serif);
 
@@ -1057,12 +1099,11 @@ TOAST
   transform:translateX(-50%);
 
   background:
-    rgba(16,32,58,.95);
+    rgba(19,35,63,.96);
 
   color:white;
 
-  padding:
-    14px 24px;
+  padding:14px 24px;
 
   border-radius:30px;
 
@@ -1070,24 +1111,25 @@ TOAST
 
   display:none;
 
-  z-index:999999;
+  z-index:9999;
 
 }
 
 </style>
-
 </head>
 
 <body>
 
-<!-- POINTAGE -->
+<!-- =========================================================
+POINTAGE
+========================================================= -->
 
 <div class="view active"
      id="view-pointage">
 
   <div class="header">
 
-    <div class="header-top">
+    <div class="logo-row">
 
       <div class="logo">
         🍷
@@ -1107,7 +1149,7 @@ TOAST
 
     </div>
 
-    <div class="status">
+    <div class="status-row">
 
       <div class="dot"
            id="dot"></div>
@@ -1212,7 +1254,9 @@ TOAST
 
 </div>
 
-<!-- HISTORIQUE -->
+<!-- =========================================================
+HISTORIQUE
+========================================================= -->
 
 <div class="view"
      id="view-history">
@@ -1241,7 +1285,111 @@ TOAST
 
 </div>
 
-<!-- CONTRAT -->
+<!-- =========================================================
+MOIS
+========================================================= -->
+
+<div class="view"
+     id="view-month">
+
+  <div class="page-title">
+    Mois
+  </div>
+
+  <div class="contract-card">
+
+    <div class="contract-top">
+
+      <div style="font-size:24px;font-weight:700">
+        Total mensuel
+      </div>
+
+      <div class="contract-badge"
+           id="monthBadge">
+
+        Avril 2026
+
+      </div>
+
+    </div>
+
+    <div class="solde-label">
+      Temps travaillé
+    </div>
+
+    <div class="solde"
+         id="monthTotal">
+
+      0h00
+
+    </div>
+
+    <div class="progress">
+
+      <div class="progress-bar"
+           id="monthProgress"></div>
+
+    </div>
+
+  </div>
+
+  <div class="analytics">
+
+    <div class="card analytics-card">
+
+      <div class="analytics-label">
+        Moyenne / jour
+      </div>
+
+      <div class="analytics-value"
+           id="avgMonth">
+
+        0h00
+
+      </div>
+
+      <div class="analytics-sub">
+        moyenne travaillée
+      </div>
+
+    </div>
+
+    <div class="card analytics-card">
+
+      <div class="analytics-label">
+        Projection
+      </div>
+
+      <div class="analytics-value"
+           id="projectionMonth">
+
+        0h00
+
+      </div>
+
+      <div class="analytics-sub">
+        estimation fin de mois
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="section-header">
+
+    <div class="section-title">
+      Historique semaines
+    </div>
+
+  </div>
+
+  <div id="monthWeeks"></div>
+
+</div>
+
+<!-- =========================================================
+CONTRAT
+========================================================= -->
 
 <div class="view"
      id="view-contract">
@@ -1254,12 +1402,8 @@ TOAST
 
     <div class="contract-top">
 
-      <div>
-
-        <div style="font-size:24px;font-weight:700">
-          Solde actuel
-        </div>
-
+      <div style="font-size:24px;font-weight:700">
+        Solde semaine
       </div>
 
       <div class="contract-badge"
@@ -1272,10 +1416,10 @@ TOAST
     </div>
 
     <div class="solde-label">
-      Balance contrat
+      Balance actuelle
     </div>
 
-    <div class="solde-value"
+    <div class="solde"
          id="soldeValue">
 
       0h00
@@ -1285,50 +1429,48 @@ TOAST
     <div class="progress">
 
       <div class="progress-bar"
-           id="progressBar"></div>
+           id="weekProgress"></div>
 
     </div>
 
   </div>
 
-  <div class="settings">
+  <div class="setting card">
 
-    <div class="card setting">
+    <label>
+      Heures contrat / semaine
+    </label>
 
-      <label>
-        Heures contrat / semaine
-      </label>
-
-      <input type="number"
-             id="weeklyHoursInput"
-             step="0.5">
-
-    </div>
-
-    <div class="card setting">
-
-      <label>
-        Solde actuel (heures)
-      </label>
-
-      <input type="number"
-             id="balanceInput"
-             step="0.5">
-
-    </div>
-
-    <button class="btn btn-primary"
-            onclick="saveContract()">
-
-      Sauvegarder
-
-    </button>
+    <input type="number"
+           id="weeklyHoursInput"
+           step="0.5">
 
   </div>
+
+  <div class="setting card">
+
+    <label>
+      Solde actuel (heures)
+    </label>
+
+    <input type="number"
+           id="balanceInput"
+           step="0.5">
+
+  </div>
+
+  <button class="btn btn-primary"
+          onclick="saveContract()">
+
+    Sauvegarder
+
+  </button>
 
 </div>
 
-<!-- NAVBAR -->
+<!-- =========================================================
+NAVBAR
+========================================================= -->
 
 <div class="nav">
 
@@ -1361,6 +1503,20 @@ TOAST
   </div>
 
   <div class="nav-item"
+       id="nav-month"
+       onclick="goTo('month')">
+
+    <div class="nav-icon">
+      📆
+    </div>
+
+    <div class="nav-label">
+      Mois
+    </div>
+
+  </div>
+
+  <div class="nav-item"
        id="nav-contract"
        onclick="goTo('contract')">
 
@@ -1376,7 +1532,9 @@ TOAST
 
 </div>
 
-<!-- MODAL -->
+<!-- =========================================================
+MODAL
+========================================================= -->
 
 <div class="modal-overlay"
      id="modalOverlay">
@@ -1482,6 +1640,10 @@ function goTo(view){
     .getElementById('nav-' + view)
     .classList.add('active');
 
+  if(view === 'month'){
+    renderMonth();
+  }
+
 }
 
 /* =========================================================
@@ -1504,7 +1666,6 @@ function updateClock(){
 }
 
 setInterval(updateClock,1000);
-
 updateClock();
 
 /* =========================================================
@@ -1618,20 +1779,10 @@ function refresh(){
     document.getElementById('timer').innerText =
       '0:00:00';
 
-    document.getElementById('timerSub').innerText =
-      'Appuie sur « Je pointe »';
-
-  }else{
-
-    document.getElementById('timerSub').innerText =
-      'Depuis ' + time(new Date(current.start));
-
   }
 
   updateStats();
-
   renderSessions();
-
   renderContract();
 
 }
@@ -1651,60 +1802,6 @@ function updateStats(){
 }
 
 /* =========================================================
-CONTRACT
-========================================================= */
-
-function renderContract(){
-
-  document.getElementById('weeklyHoursInput').value =
-    settings.weeklyHours;
-
-  document.getElementById('balanceInput').value =
-    settings.balance;
-
-  document.getElementById('contractBadge').innerText =
-    settings.weeklyHours + 'h / semaine';
-
-  const target =
-    settings.weeklyHours * 3600;
-
-  const diff =
-    (settings.balance * 3600)
-    + (weekTotal() - target);
-
-  document.getElementById('soldeValue').innerText =
-    (diff >= 0 ? '+' : '−')
-    + formatShort(Math.abs(diff));
-
-  document.getElementById('progressBar').style.width =
-    Math.min(100,(weekTotal()/target)*100)+'%';
-
-}
-
-function saveContract(){
-
-  settings.weeklyHours =
-    parseFloat(
-      document.getElementById('weeklyHoursInput').value
-    ) || 39;
-
-  settings.balance =
-    parseFloat(
-      document.getElementById('balanceInput').value
-    ) || 0;
-
-  localStorage.setItem(
-    'am_settings',
-    JSON.stringify(settings)
-  );
-
-  renderContract();
-
-  toast('Contrat sauvegardé ✓');
-
-}
-
-/* =========================================================
 SESSIONS
 ========================================================= */
 
@@ -1715,15 +1812,8 @@ function renderSessions(){
 
   if(!sessions.length){
 
-    el.innerHTML = `
-      <div style="
-        text-align:center;
-        padding:30px;
-        color:var(--text3);
-      ">
-        Aucune session enregistrée
-      </div>
-    `;
+    el.innerHTML =
+      '<div style="text-align:center;padding:30px;color:var(--text3)">Aucune session</div>';
 
     return;
 
@@ -1733,9 +1823,8 @@ function renderSessions(){
 
   sessions.forEach(s => {
 
-    const start = new Date(s.start);
-
-    const end = new Date(s.end);
+    const st = new Date(s.start);
+    const en = new Date(s.end);
 
     html += `
 
@@ -1746,11 +1835,11 @@ function renderSessions(){
         <div class="session-info">
 
           <div class="session-date">
-            ${dateFull(start)}
+            ${dateFull(st)}
           </div>
 
           <div class="session-hours">
-            ${time(start)} → ${time(end)}
+            ${time(st)} → ${time(en)}
           </div>
 
         </div>
@@ -1759,7 +1848,7 @@ function renderSessions(){
           ${formatShort(s.duration)}
         </div>
 
-        <div class="session-actions">
+        <div class="actions">
 
           <button class="action edit"
                   onclick="editSession(${s.id})">
@@ -1797,7 +1886,7 @@ function editSession(id){
   const hours =
     prompt(
       'Modifier durée (heures)',
-      (s.duration / 3600).toFixed(2)
+      (s.duration/3600).toFixed(2)
     );
 
   if(!hours) return;
@@ -1808,8 +1897,6 @@ function editSession(id){
   saveSessions();
 
   refresh();
-
-  toast('Session modifiée ✓');
 
 }
 
@@ -1822,7 +1909,202 @@ function deleteSession(id){
 
   refresh();
 
-  toast('Session supprimée');
+}
+
+/* =========================================================
+MONTH
+========================================================= */
+
+function renderMonth(){
+
+  const total = monthTotal();
+
+  document.getElementById('monthTotal').innerText =
+    formatShort(total);
+
+  const target =
+    settings.weeklyHours * 4.33 * 3600;
+
+  document.getElementById('monthProgress').style.width =
+    Math.min(100,(total/target)*100)+'%';
+
+  document.getElementById('monthBadge').innerText =
+    new Date().toLocaleDateString(
+      'fr-FR',
+      {
+        month:'long',
+        year:'numeric'
+      }
+    );
+
+  const workedDays = {};
+
+  sessions.forEach(s => {
+
+    const d = new Date(s.start);
+
+    const key =
+      d.getFullYear()
+      + '-'
+      + d.getMonth()
+      + '-'
+      + d.getDate();
+
+    if(!workedDays[key]){
+      workedDays[key] = 0;
+    }
+
+    workedDays[key] += s.duration;
+
+  });
+
+  const avg =
+    total / (Object.keys(workedDays).length || 1);
+
+  document.getElementById('avgMonth').innerText =
+    formatShort(avg);
+
+  const projection =
+    (total / new Date().getDate())
+    *
+    new Date(
+      new Date().getFullYear(),
+      new Date().getMonth()+1,
+      0
+    ).getDate();
+
+  document.getElementById('projectionMonth').innerText =
+    formatShort(projection);
+
+  const weeks = {};
+
+  sessions.forEach(s => {
+
+    const d = new Date(s.start);
+
+    const w =
+      getWeekNumber(d);
+
+    if(!weeks[w]){
+      weeks[w] = 0;
+    }
+
+    weeks[w] += s.duration;
+
+  });
+
+  let html = '';
+
+  Object.keys(weeks)
+    .reverse()
+    .forEach(w => {
+
+      const diff =
+        weeks[w]
+        - (settings.weeklyHours * 3600);
+
+      html += `
+
+        <div class="month-week">
+
+          <div>
+
+            <div class="month-week-title">
+              Semaine ${w}
+            </div>
+
+            <div class="month-week-sub">
+
+              ${
+                diff >= 0
+                ? '🟢'
+                : '🔴'
+              }
+
+              ${
+                diff >= 0
+                ? '+'
+                : '−'
+              }
+
+              ${formatShort(Math.abs(diff))}
+
+            </div>
+
+          </div>
+
+          <div class="month-week-total">
+
+            ${formatShort(weeks[w])}
+
+          </div>
+
+        </div>
+
+      `;
+
+    });
+
+  document.getElementById('monthWeeks').innerHTML =
+    html;
+
+}
+
+/* =========================================================
+CONTRACT
+========================================================= */
+
+function renderContract(){
+
+  document.getElementById('weeklyHoursInput').value =
+    settings.weeklyHours;
+
+  document.getElementById('balanceInput').value =
+    settings.balance;
+
+  document.getElementById('contractBadge').innerText =
+    settings.weeklyHours + 'h / semaine';
+
+  const totalWeek =
+    weekTotal();
+
+  const diff =
+    (settings.balance * 3600)
+    +
+    (totalWeek - settings.weeklyHours*3600);
+
+  document.getElementById('soldeValue').innerText =
+    (diff >= 0 ? '+' : '−')
+    +
+    formatShort(Math.abs(diff));
+
+  document.getElementById('weekProgress').style.width =
+    Math.min(100,
+      (totalWeek/(settings.weeklyHours*3600))*100
+    ) + '%';
+
+}
+
+function saveContract(){
+
+  settings.weeklyHours =
+    parseFloat(
+      document.getElementById('weeklyHoursInput').value
+    ) || 39;
+
+  settings.balance =
+    parseFloat(
+      document.getElementById('balanceInput').value
+    ) || 0;
+
+  localStorage.setItem(
+    'am_settings',
+    JSON.stringify(settings)
+  );
+
+  renderContract();
+
+  toast('Contrat sauvegardé ✓');
 
 }
 
@@ -1866,24 +2148,22 @@ function saveModal(){
   const end =
     document.getElementById('mEnd').value;
 
-  const startDate =
+  const st =
     new Date(date + 'T' + start);
 
-  const endDate =
+  const en =
     new Date(date + 'T' + end);
 
   const sec =
-    Math.floor(
-      (endDate - startDate) / 1000
-    );
+    Math.floor((en-st)/1000);
 
   sessions.unshift({
 
     id:Date.now(),
 
-    start:startDate.toISOString(),
+    start:st.toISOString(),
 
-    end:endDate.toISOString(),
+    end:en.toISOString(),
 
     duration:sec
 
@@ -1895,12 +2175,10 @@ function saveModal(){
 
   refresh();
 
-  toast('Session ajoutée ✓');
-
 }
 
 /* =========================================================
-SAVE
+HELPERS
 ========================================================= */
 
 function saveSessions(){
@@ -1912,33 +2190,17 @@ function saveSessions(){
 
 }
 
-/* =========================================================
-HELPERS
-========================================================= */
-
-function pad(n){
-  return String(n).padStart(2,'0');
-}
-
-function time(d){
-
-  return pad(d.getHours())
-    + ':'
-    + pad(d.getMinutes());
-
-}
-
 function formatShort(sec){
 
   sec = Math.floor(sec);
 
   const h =
-    Math.floor(sec / 3600);
+    Math.floor(sec/3600);
 
   const m =
-    Math.floor((sec % 3600) / 60);
+    Math.floor((sec%3600)/60);
 
-  return h + 'h' + pad(m);
+  return h + 'h' + String(m).padStart(2,'0');
 
 }
 
@@ -1947,23 +2209,37 @@ function formatFull(sec){
   sec = Math.floor(sec);
 
   const h =
-    Math.floor(sec / 3600);
+    Math.floor(sec/3600);
 
   const m =
-    Math.floor((sec % 3600) / 60);
+    Math.floor((sec%3600)/60);
 
   const s =
-    sec % 60;
+    sec%60;
 
-  return h + ':' + pad(m) + ':' + pad(s);
+  return h
+    + ':'
+    + String(m).padStart(2,'0')
+    + ':'
+    + String(s).padStart(2,'0');
+
+}
+
+function time(d){
+
+  return String(d.getHours()).padStart(2,'0')
+    + ':'
+    + String(d.getMinutes()).padStart(2,'0');
 
 }
 
 function sameDay(a,b){
 
-  return a.getDate() === b.getDate()
-    && a.getMonth() === b.getMonth()
-    && a.getFullYear() === b.getFullYear();
+  return a.getDate()===b.getDate()
+    &&
+    a.getMonth()===b.getMonth()
+    &&
+    a.getFullYear()===b.getFullYear();
 
 }
 
@@ -1973,10 +2249,55 @@ function dayTotal(date){
 
   sessions.forEach(s => {
 
-    const d =
-      new Date(s.start);
+    if(sameDay(new Date(s.start),date)){
+      total += s.duration;
+    }
 
-    if(sameDay(d,date)){
+  });
+
+  return total;
+
+}
+
+function weekTotal(){
+
+  const start = weekStart(new Date());
+
+  const end = new Date(start);
+
+  end.setDate(end.getDate()+6);
+
+  let total = 0;
+
+  sessions.forEach(s => {
+
+    const d = new Date(s.start);
+
+    if(d >= start && d <= end){
+      total += s.duration;
+    }
+
+  });
+
+  return total;
+
+}
+
+function monthTotal(){
+
+  const now = new Date();
+
+  let total = 0;
+
+  sessions.forEach(s => {
+
+    const d = new Date(s.start);
+
+    if(
+      d.getMonth()===now.getMonth()
+      &&
+      d.getFullYear()===now.getFullYear()
+    ){
       total += s.duration;
     }
 
@@ -1988,17 +2309,14 @@ function dayTotal(date){
 
 function weekStart(date){
 
-  const d =
-    new Date(date);
+  const d = new Date(date);
 
-  const day =
-    d.getDay();
+  const day = d.getDay();
 
-  const diff =
+  d.setDate(
     d.getDate()
-    - (day === 0 ? 6 : day - 1);
-
-  d.setDate(diff);
+    - (day===0 ? 6 : day-1)
+  );
 
   d.setHours(0,0,0,0);
 
@@ -2006,32 +2324,30 @@ function weekStart(date){
 
 }
 
-function weekTotal(){
+function getWeekNumber(date){
 
-  const start =
-    weekStart(new Date());
+  const d = new Date(
+    Date.UTC(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate()
+    )
+  );
 
-  const end =
-    new Date(start);
+  d.setUTCDate(
+    d.getUTCDate()
+    + 4
+    - (d.getUTCDay() || 7)
+  );
 
-  end.setDate(end.getDate() + 6);
+  const yearStart =
+    new Date(
+      Date.UTC(d.getUTCFullYear(),0,1)
+    );
 
-  end.setHours(23,59,59,999);
-
-  let total = 0;
-
-  sessions.forEach(s => {
-
-    const d =
-      new Date(s.start);
-
-    if(d >= start && d <= end){
-      total += s.duration;
-    }
-
-  });
-
-  return total;
+  return Math.ceil(
+    (((d-yearStart)/86400000)+1)/7
+  );
 
 }
 
@@ -2049,9 +2365,9 @@ function dateFull(d){
 
   return days[d.getDay()]
     + ' '
-    + pad(d.getDate())
+    + String(d.getDate()).padStart(2,'0')
     + '/'
-    + pad(d.getMonth()+1);
+    + String(d.getMonth()+1).padStart(2,'0');
 
 }
 
