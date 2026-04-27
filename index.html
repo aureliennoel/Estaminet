@@ -1,34 +1,49 @@
+<!-- =========================================================
+  FICHIER : index.html
+  POINTEUSE ULTIMATE — L'AMUSETTE
+========================================================= -->
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>Pointeuse — L'amusette</title>
 
 <!-- PWA -->
+
 <meta name="theme-color" content="#18253f">
 
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="L'amusette">
 
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./icon-192.png">
+
+<!-- CACHE -->
+
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 
-<link rel="manifest" href="./manifest.json">
-<link rel="apple-touch-icon" href="./icon-192.png">
+<!-- FONTS -->
 
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
 
-<!-- Export -->
+<!-- EXPORT -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
 <style>
+
+/* =========================================================
+ROOT
+========================================================= */
 
 :root{
 
@@ -40,17 +55,18 @@
   --red2:#e74c3c;
 
   --green:#27ae60;
+  --orange:#e67e22;
 
   --cream:#f8f5f0;
   --white:#ffffff;
 
   --gray:#f0eee9;
-  --gray2:#e6e2da;
+  --gray2:#e5e1d8;
 
   --border:#ddd8cf;
 
   --text:#1a2744;
-  --text2:#667089;
+  --text2:#677189;
   --text3:#98a1b4;
 
   --radius:18px;
@@ -60,12 +76,16 @@
     0 10px 28px rgba(17,28,50,.06);
 
   --shadow-lg:
-    0 10px 30px rgba(17,28,50,.16);
+    0 10px 30px rgba(17,28,50,.18);
 
   --font:'DM Sans',sans-serif;
   --font-serif:'DM Serif Display',serif;
 
 }
+
+/* =========================================================
+GLOBAL
+========================================================= */
 
 *{
   margin:0;
@@ -90,89 +110,13 @@ body{
 
 }
 
-/* LOADER */
-
-.loader{
-
-  position:fixed;
-  inset:0;
-
-  background:linear-gradient(135deg,var(--navy),var(--navy2));
-
-  z-index:9999;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-
-  transition:.5s;
-
+button,input{
+  font-family:var(--font);
 }
 
-.loader.hide{
-  opacity:0;
-  visibility:hidden;
-}
-
-.loader-logo{
-
-  width:90px;
-  height:90px;
-
-  border-radius:26px;
-
-  background:linear-gradient(135deg,var(--red),var(--red2));
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  color:#fff;
-
-  font-size:42px;
-
-  box-shadow:var(--shadow-lg);
-
-  animation:pulse 1.8s infinite;
-
-}
-
-.loader-title{
-
-  margin-top:20px;
-
-  color:#fff;
-
-  font-size:30px;
-
-  font-family:var(--font-serif);
-
-}
-
-.loader-sub{
-
-  margin-top:6px;
-
-  color:rgba(255,255,255,.5);
-
-  letter-spacing:2px;
-
-  text-transform:uppercase;
-
-  font-size:11px;
-
-}
-
-@keyframes pulse{
-
-  0%{transform:scale(1)}
-  50%{transform:scale(1.06)}
-  100%{transform:scale(1)}
-
-}
-
-/* VIEW */
+/* =========================================================
+VIEW
+========================================================= */
 
 .view{
   display:none;
@@ -183,7 +127,9 @@ body{
   display:block;
 }
 
-/* HEADER */
+/* =========================================================
+HEADER
+========================================================= */
 
 .header{
 
@@ -193,11 +139,11 @@ body{
 
   background:linear-gradient(135deg,var(--navy),var(--navy2));
 
+  color:#fff;
+
   position:relative;
 
   overflow:hidden;
-
-  color:#fff;
 
 }
 
@@ -219,40 +165,22 @@ body{
 
 }
 
-.header::after{
-
-  content:'';
-
-  position:absolute;
-
-  width:100px;
-  height:100px;
-
-  border-radius:50%;
-
-  background:rgba(231,76,60,.15);
-
-  bottom:-30px;
-  left:40px;
-
-}
-
 .header-top{
-
-  position:relative;
-  z-index:2;
 
   display:flex;
   align-items:center;
 
   gap:14px;
 
+  position:relative;
+  z-index:2;
+
 }
 
 .logo{
 
-  width:54px;
-  height:54px;
+  width:56px;
+  height:56px;
 
   border-radius:16px;
 
@@ -262,7 +190,7 @@ body{
   align-items:center;
   justify-content:center;
 
-  font-size:24px;
+  font-size:26px;
 
   box-shadow:var(--shadow-lg);
 
@@ -278,13 +206,11 @@ body{
 
 .brand-sub{
 
-  margin-top:2px;
-
   font-size:11px;
 
-  text-transform:uppercase;
-
   letter-spacing:2px;
+
+  text-transform:uppercase;
 
   color:rgba(255,255,255,.6);
 
@@ -292,15 +218,15 @@ body{
 
 .status{
 
-  position:relative;
-  z-index:2;
-
   margin-top:18px;
 
   display:flex;
   align-items:center;
 
   gap:8px;
+
+  position:relative;
+  z-index:2;
 
 }
 
@@ -340,24 +266,19 @@ body{
 }
 
 .status-text{
-
   font-size:13px;
-
   color:rgba(255,255,255,.8);
-
 }
 
 .clock{
-
   margin-left:auto;
-
   font-size:13px;
-
   color:rgba(255,255,255,.5);
-
 }
 
-/* CARD */
+/* =========================================================
+CARD
+========================================================= */
 
 .card{
 
@@ -369,7 +290,9 @@ body{
 
 }
 
-/* TIMER */
+/* =========================================================
+TIMER
+========================================================= */
 
 .timer-card{
 
@@ -387,9 +310,9 @@ body{
 
   font-weight:700;
 
-  text-transform:uppercase;
-
   letter-spacing:2px;
+
+  text-transform:uppercase;
 
   color:var(--text3);
 
@@ -403,7 +326,7 @@ body{
 
   margin-top:8px;
 
-  font-size:64px;
+  font-size:62px;
 
   font-weight:700;
 
@@ -423,13 +346,13 @@ body{
 
 .btns{
 
-  margin-top:24px;
-
   display:grid;
 
   grid-template-columns:1fr 1fr;
 
   gap:12px;
+
+  margin-top:24px;
 
 }
 
@@ -440,8 +363,6 @@ body{
   border-radius:14px;
 
   padding:16px;
-
-  font-family:var(--font);
 
   font-weight:700;
 
@@ -461,8 +382,6 @@ body{
 
   color:#fff;
 
-  box-shadow:0 8px 20px rgba(24,37,63,.25);
-
 }
 
 .btn-danger{
@@ -471,16 +390,23 @@ body{
 
   color:#fff;
 
-  box-shadow:0 8px 20px rgba(192,57,43,.25);
+}
+
+.btn-orange{
+
+  background:linear-gradient(135deg,#d97706,#f59e0b);
+
+  color:#fff;
 
 }
 
 .btn:disabled{
   opacity:.4;
-  box-shadow:none;
 }
 
-/* STATS */
+/* =========================================================
+STATS
+========================================================= */
 
 .stats{
 
@@ -544,15 +470,17 @@ body{
 
   margin-top:8px;
 
-  font-size:32px;
+  font-size:30px;
 
   font-weight:700;
 
 }
 
-/* CONTRACT */
+/* =========================================================
+SOLDE
+========================================================= */
 
-.contract{
+.solde{
 
   padding:18px;
 
@@ -560,7 +488,7 @@ body{
 
 }
 
-.contract-top{
+.solde-top{
 
   display:flex;
   justify-content:space-between;
@@ -570,17 +498,17 @@ body{
 
 .badge{
 
+  background:var(--gray);
+
   padding:6px 12px;
 
   border-radius:20px;
 
-  background:var(--gray);
-
-  color:var(--text2);
-
   font-size:12px;
 
   font-weight:700;
+
+  color:var(--text2);
 
 }
 
@@ -590,11 +518,11 @@ body{
 
   height:8px;
 
-  background:var(--gray2);
-
-  border-radius:10px;
+  border-radius:20px;
 
   overflow:hidden;
+
+  background:var(--gray2);
 
 }
 
@@ -610,11 +538,21 @@ body{
 
 }
 
-/* SECTION */
+/* =========================================================
+SECTION
+========================================================= */
 
-.section-title{
+.section-header{
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 
   margin-bottom:12px;
+
+}
+
+.section-title{
 
   font-size:20px;
 
@@ -622,7 +560,28 @@ body{
 
 }
 
-/* SESSIONS */
+.add-btn{
+
+  width:36px;
+  height:36px;
+
+  border:none;
+
+  border-radius:50%;
+
+  background:linear-gradient(135deg,var(--navy),var(--navy3));
+
+  color:#fff;
+
+  font-size:22px;
+
+  cursor:pointer;
+
+}
+
+/* =========================================================
+SESSIONS
+========================================================= */
 
 .sessions{
 
@@ -650,10 +609,10 @@ body{
 
 }
 
-.session-icon{
+.session-dot{
 
-  width:12px;
-  height:12px;
+  width:10px;
+  height:10px;
 
   border-radius:50%;
 
@@ -671,7 +630,7 @@ body{
 
 .session-hours{
 
-  margin-top:2px;
+  margin-top:3px;
 
   font-size:13px;
 
@@ -687,7 +646,37 @@ body{
 
 }
 
-/* NAV */
+.session-actions{
+
+  display:flex;
+  gap:8px;
+
+}
+
+.action{
+
+  width:32px;
+  height:32px;
+
+  border:none;
+
+  border-radius:10px;
+
+  cursor:pointer;
+
+}
+
+.edit{
+  background:#edf2ff;
+}
+
+.delete{
+  background:#ffe7e7;
+}
+
+/* =========================================================
+NAV
+========================================================= */
 
 .nav{
 
@@ -712,8 +701,6 @@ body{
 
   padding:10px 0 22px;
 
-  z-index:100;
-
 }
 
 .nav-item{
@@ -724,9 +711,9 @@ body{
 
   gap:6px;
 
-  color:var(--text3);
-
   font-size:11px;
+
+  color:var(--text3);
 
   font-weight:600;
 
@@ -755,7 +742,104 @@ body{
   background:rgba(24,37,63,.08);
 }
 
-/* TOAST */
+/* =========================================================
+MODAL
+========================================================= */
+
+.modal-overlay{
+
+  position:fixed;
+  inset:0;
+
+  background:rgba(0,0,0,.45);
+
+  display:none;
+
+  align-items:flex-end;
+
+  z-index:9999;
+
+}
+
+.modal-overlay.open{
+  display:flex;
+}
+
+.modal{
+
+  width:100%;
+
+  max-width:430px;
+
+  background:#fff;
+
+  border-radius:26px 26px 0 0;
+
+  padding:24px 20px 40px;
+
+}
+
+.modal-title{
+
+  font-size:24px;
+
+  font-family:var(--font-serif);
+
+  margin-bottom:20px;
+
+}
+
+.field{
+  margin-bottom:14px;
+}
+
+.field label{
+
+  display:block;
+
+  margin-bottom:6px;
+
+  font-size:12px;
+
+  font-weight:700;
+
+  text-transform:uppercase;
+
+  color:var(--text2);
+
+}
+
+.field input{
+
+  width:100%;
+
+  border:1px solid var(--border);
+
+  border-radius:12px;
+
+  padding:14px;
+
+  font-size:15px;
+
+  background:var(--cream);
+
+}
+
+.modal-btns{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:12px;
+
+  margin-top:20px;
+
+}
+
+/* =========================================================
+TOAST
+========================================================= */
 
 .toast{
 
@@ -766,7 +850,7 @@ body{
 
   transform:translateX(-50%);
 
-  background:rgba(24,37,63,.95);
+  background:rgba(24,37,63,.96);
 
   color:#fff;
 
@@ -774,11 +858,9 @@ body{
 
   border-radius:30px;
 
-  z-index:999;
+  z-index:99999;
 
   display:none;
-
-  box-shadow:var(--shadow-lg);
 
 }
 
@@ -787,25 +869,11 @@ body{
 
 <body>
 
-<div class="loader" id="loader">
+<!-- =========================================================
+POINTAGE
+========================================================= -->
 
-  <div class="loader-logo">
-    ⏱
-  </div>
-
-  <div class="loader-title">
-    L'amusette
-  </div>
-
-  <div class="loader-sub">
-    Pointeuse Premium
-  </div>
-
-</div>
-
-<!-- POINTAGE -->
-
-<div class="view active" id="pointage">
+<div class="view active">
 
   <div class="header">
 
@@ -833,30 +901,47 @@ body{
 
       <div class="dot" id="dot"></div>
 
-      <div class="status-text" id="statusText">
+      <div class="status-text"
+           id="statusText">
+
         Pas pointé
+
       </div>
 
-      <div class="clock" id="clock">
+      <div class="clock"
+           id="clock">
+
         00:00
+
       </div>
 
     </div>
 
   </div>
 
+  <!-- TIMER -->
+
   <div class="card timer-card">
 
-    <div class="timer-state" id="timerState">
+    <div class="timer-state"
+         id="timerState">
+
       prêt
+
     </div>
 
-    <div class="timer" id="timer">
+    <div class="timer"
+         id="timer">
+
       0:00:00
+
     </div>
 
-    <div class="timer-sub" id="timerSub">
+    <div class="timer-sub"
+         id="timerSub">
+
       Appuie sur « Je pointe »
+
     </div>
 
     <div class="btns">
@@ -881,6 +966,8 @@ body{
     </div>
 
   </div>
+
+  <!-- STATS -->
 
   <div class="stats">
 
@@ -916,9 +1003,11 @@ body{
 
   </div>
 
-  <div class="card contract">
+  <!-- SOLDE -->
 
-    <div class="contract-top">
+  <div class="card solde">
+
+    <div class="solde-top">
 
       <div>
 
@@ -926,22 +1015,29 @@ body{
           Contrat
         </div>
 
-        <div style="font-size:13px;color:var(--text2);margin-top:4px">
-          Évolution hebdomadaire
+        <div style="font-size:13px;color:var(--text2);margin-top:3px">
+          Solde actuel
         </div>
 
       </div>
 
-      <div class="badge" id="contractBadge">
+      <div class="badge"
+           id="badge">
+
         39h / semaine
+
       </div>
 
     </div>
 
     <div style="margin-top:18px">
 
-      Écart :
-      <strong id="contractDiff">0h00</strong>
+      Solde :
+      <strong id="soldeTxt">
+
+        0h00
+
+      </strong>
 
     </div>
 
@@ -952,8 +1048,21 @@ body{
 
   </div>
 
-  <div class="section-title">
-    Dernières sessions
+  <!-- SESSIONS -->
+
+  <div class="section-header">
+
+    <div class="section-title">
+      Sessions
+    </div>
+
+    <button class="add-btn"
+            onclick="openModal()">
+
+      +
+
+    </button>
+
   </div>
 
   <div class="sessions"
@@ -961,7 +1070,71 @@ body{
 
 </div>
 
-<!-- NAV -->
+<!-- =========================================================
+MODAL
+========================================================= -->
+
+<div class="modal-overlay"
+     id="modalOverlay">
+
+  <div class="modal">
+
+    <div class="modal-title">
+      Ajouter une session
+    </div>
+
+    <div class="field">
+
+      <label>Date</label>
+
+      <input type="date"
+             id="mDate">
+
+    </div>
+
+    <div class="field">
+
+      <label>Entrée</label>
+
+      <input type="time"
+             id="mStart">
+
+    </div>
+
+    <div class="field">
+
+      <label>Sortie</label>
+
+      <input type="time"
+             id="mEnd">
+
+    </div>
+
+    <div class="modal-btns">
+
+      <button class="btn"
+              onclick="closeModal()">
+
+        Annuler
+
+      </button>
+
+      <button class="btn btn-primary"
+              onclick="saveModal()">
+
+        Ajouter
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- =========================================================
+NAV
+========================================================= -->
 
 <div class="nav">
 
@@ -979,50 +1152,50 @@ body{
 
 </div>
 
-<div class="toast" id="toast"></div>
+<div class="toast"
+     id="toast"></div>
 
 <script>
 
-/* LOADER */
-
-window.addEventListener('load',()=>{
-
-  setTimeout(()=>{
-
-    document.getElementById('loader')
-      .classList.add('hide');
-
-  },1200);
-
-});
-
-/* STATE */
+/* =========================================================
+STATE
+========================================================= */
 
 let sessions =
-JSON.parse(localStorage.getItem('premium_sessions') || '[]');
+JSON.parse(localStorage.getItem('ultimate_sessions') || '[]');
 
 let current =
-JSON.parse(localStorage.getItem('premium_current') || 'null');
+JSON.parse(localStorage.getItem('ultimate_current') || 'null');
 
 let settings =
-JSON.parse(localStorage.getItem('premium_settings') || 'null')
+JSON.parse(localStorage.getItem('ultimate_settings') || 'null')
 || {
-  weeklyHours:39
+
+  weeklyHours:39,
+
+  currentBalance:0
+
 };
 
-let timerInterval = null;
+let timerInterval=null;
 
-/* CLOCK */
+/* =========================================================
+CLOCK
+========================================================= */
 
 function updateClock(){
 
-  const now = new Date();
+  const now=new Date();
 
-  document.getElementById('clock').innerText =
-    now.toLocaleTimeString('fr-FR',{
-      hour:'2-digit',
-      minute:'2-digit'
-    });
+  document.getElementById('clock')
+    .innerText =
+      now.toLocaleTimeString(
+        'fr-FR',
+        {
+          hour:'2-digit',
+          minute:'2-digit'
+        }
+      );
 
 }
 
@@ -1030,18 +1203,20 @@ setInterval(updateClock,1000);
 
 updateClock();
 
-/* START */
+/* =========================================================
+START
+========================================================= */
 
 function startShift(){
 
   if(current) return;
 
-  current = {
+  current={
     start:new Date().toISOString()
   };
 
   localStorage.setItem(
-    'premium_current',
+    'ultimate_current',
     JSON.stringify(current)
   );
 
@@ -1053,34 +1228,37 @@ function startShift(){
 
 }
 
-/* STOP */
+/* =========================================================
+STOP
+========================================================= */
 
 function stopShift(){
 
   if(!current) return;
 
-  const end = new Date();
+  const end=new Date();
 
-  const sec = Math.floor(
-    (end - new Date(current.start)) / 1000
+  const sec=Math.floor(
+    (end - new Date(current.start))/1000
   );
 
   sessions.unshift({
 
+    id:Date.now(),
+
     start:current.start,
+
     end:end.toISOString(),
+
     duration:sec
 
   });
 
-  localStorage.setItem(
-    'premium_sessions',
-    JSON.stringify(sessions)
-  );
+  saveSessions();
 
-  current = null;
+  current=null;
 
-  localStorage.removeItem('premium_current');
+  localStorage.removeItem('ultimate_current');
 
   clearInterval(timerInterval);
 
@@ -1090,63 +1268,69 @@ function stopShift(){
 
 }
 
-/* TIMER */
+/* =========================================================
+TIMER
+========================================================= */
 
 function startTimer(){
 
   clearInterval(timerInterval);
 
-  timerInterval = setInterval(()=>{
+  timerInterval=setInterval(()=>{
 
     if(!current) return;
 
-    const sec = Math.floor(
-      (Date.now() - new Date(current.start)) / 1000
+    const sec=Math.floor(
+      (Date.now() - new Date(current.start))/1000
     );
 
     document.getElementById('timer')
-      .innerText = formatFull(sec);
+      .innerText=formatFull(sec);
 
   },1000);
 
 }
 
-/* REFRESH */
+/* =========================================================
+REFRESH
+========================================================= */
 
 function refresh(){
 
-  const running = !!current;
+  const running=!!current;
 
   document.getElementById('dot')
-    .className = 'dot'+(running?' live':'');
+    .className='dot'+(running?' live':'');
 
   document.getElementById('statusText')
-    .innerText = running?'En cours':'Pas pointé';
+    .innerText=running?'En cours':'Pas pointé';
 
   document.getElementById('timerState')
-    .className = 'timer-state'+(running?' live':'');
+    .className='timer-state'+(running?' live':'');
 
   document.getElementById('timerState')
-    .innerText = running?'EN COURS':'PRÊT';
+    .innerText=running?'EN COURS':'PRÊT';
 
   document.getElementById('startBtn')
-    .disabled = running;
+    .disabled=running;
 
   document.getElementById('stopBtn')
-    .disabled = !running;
+    .disabled=!running;
 
   if(!running){
 
     document.getElementById('timer')
-      .innerText = '0:00:00';
+      .innerText='0:00:00';
 
     document.getElementById('timerSub')
-      .innerText = 'Appuie sur « Je pointe »';
+      .innerText='Appuie sur « Je pointe »';
 
-  } else {
+  }else{
 
     document.getElementById('timerSub')
-      .innerText = 'Depuis '+time(new Date(current.start));
+      .innerText=
+        'Depuis '
+        +time(new Date(current.start));
 
   }
 
@@ -1156,51 +1340,63 @@ function refresh(){
 
 }
 
-/* STATS */
+/* =========================================================
+STATS
+========================================================= */
 
 function updateStats(){
 
-  const today = dayTotal(new Date());
+  const today=dayTotal(new Date());
 
-  const week = weekTotal();
+  const week=weekTotal();
 
   document.getElementById('todayStat')
-    .innerText = formatShort(today);
+    .innerText=formatShort(today);
 
   document.getElementById('weekStat')
-    .innerText = formatShort(week);
+    .innerText=formatShort(week);
 
-  const target = settings.weeklyHours * 3600;
+  const target=settings.weeklyHours*3600;
 
-  const diff = week - target;
+  const diff=
+    settings.currentBalance
+    + week
+    - target;
 
-  document.getElementById('contractDiff')
-    .innerText =
+  document.getElementById('soldeTxt')
+    .innerText=
       (diff>=0?'+':'-')
       +formatShort(Math.abs(diff));
 
+  document.getElementById('badge')
+    .innerText=
+      settings.weeklyHours
+      +'h / semaine';
+
   document.getElementById('progress')
-    .style.width =
+    .style.width=
       Math.min(100,(week/target)*100)+'%';
 
 }
 
-/* RENDER */
+/* =========================================================
+RENDER
+========================================================= */
 
 function renderSessions(){
 
-  const el =
+  const el=
     document.getElementById('sessions');
 
   if(!sessions.length && !current){
 
-    el.innerHTML = `
+    el.innerHTML=`
       <div style="
+        text-align:center;
         padding:20px;
-        color:var(--text3);
-        text-align:center
+        color:var(--text3)
       ">
-        Aucune session enregistrée
+        Aucune session
       </div>
     `;
 
@@ -1212,10 +1408,10 @@ function renderSessions(){
 
   if(current){
 
-    html += `
+    html+=`
       <div class="session">
 
-        <div class="session-icon"
+        <div class="session-dot"
              style="background:var(--green)">
         </div>
 
@@ -1241,16 +1437,16 @@ function renderSessions(){
 
   }
 
-  sessions.slice(0,15).forEach(s=>{
+  sessions.forEach(s=>{
 
-    const start = new Date(s.start);
+    const start=new Date(s.start);
 
-    const end = new Date(s.end);
+    const end=new Date(s.end);
 
-    html += `
+    html+=`
       <div class="session">
 
-        <div class="session-icon"></div>
+        <div class="session-dot"></div>
 
         <div class="session-info">
 
@@ -1259,7 +1455,9 @@ function renderSessions(){
           </div>
 
           <div class="session-hours">
-            ${time(start)} → ${time(end)}
+            ${time(start)}
+            →
+            ${time(end)}
           </div>
 
         </div>
@@ -1268,16 +1466,172 @@ function renderSessions(){
           ${formatShort(s.duration)}
         </div>
 
+        <div class="session-actions">
+
+          <button class="action edit"
+                  onclick="editSession(${s.id})">
+
+            ✏️
+
+          </button>
+
+          <button class="action delete"
+                  onclick="deleteSession(${s.id})">
+
+            🗑
+
+          </button>
+
+        </div>
+
       </div>
     `;
 
   });
 
-  el.innerHTML = html;
+  el.innerHTML=html;
 
 }
 
-/* HELPERS */
+/* =========================================================
+DELETE
+========================================================= */
+
+function deleteSession(id){
+
+  sessions=sessions.filter(s=>s.id!==id);
+
+  saveSessions();
+
+  refresh();
+
+  toast('Session supprimée');
+
+}
+
+/* =========================================================
+EDIT
+========================================================= */
+
+function editSession(id){
+
+  const s=sessions.find(x=>x.id===id);
+
+  if(!s) return;
+
+  const newHours=
+    prompt(
+      'Modifier durée en heures (ex: 7.5)',
+      (s.duration/3600).toFixed(2)
+    );
+
+  if(!newHours) return;
+
+  s.duration=Math.floor(
+    parseFloat(newHours)*3600
+  );
+
+  saveSessions();
+
+  refresh();
+
+  toast('Session modifiée ✓');
+
+}
+
+/* =========================================================
+MODAL
+========================================================= */
+
+function openModal(){
+
+  const now=new Date();
+
+  document.getElementById('mDate')
+    .value=
+      now.toISOString().slice(0,10);
+
+  document.getElementById('mStart')
+    .value='09:00';
+
+  document.getElementById('mEnd')
+    .value='17:00';
+
+  document.getElementById('modalOverlay')
+    .classList.add('open');
+
+}
+
+function closeModal(){
+
+  document.getElementById('modalOverlay')
+    .classList.remove('open');
+
+}
+
+function saveModal(){
+
+  const date=
+    document.getElementById('mDate').value;
+
+  const start=
+    document.getElementById('mStart').value;
+
+  const end=
+    document.getElementById('mEnd').value;
+
+  if(!date || !start || !end){
+    return;
+  }
+
+  const startDate=
+    new Date(date+'T'+start);
+
+  const endDate=
+    new Date(date+'T'+end);
+
+  const sec=Math.floor(
+    (endDate-startDate)/1000
+  );
+
+  sessions.unshift({
+
+    id:Date.now(),
+
+    start:startDate.toISOString(),
+
+    end:endDate.toISOString(),
+
+    duration:sec
+
+  });
+
+  saveSessions();
+
+  closeModal();
+
+  refresh();
+
+  toast('Session ajoutée ✓');
+
+}
+
+/* =========================================================
+SAVE
+========================================================= */
+
+function saveSessions(){
+
+  localStorage.setItem(
+    'ultimate_sessions',
+    JSON.stringify(sessions)
+  );
+
+}
+
+/* =========================================================
+HELPERS
+========================================================= */
 
 function pad(n){
   return String(n).padStart(2,'0');
@@ -1358,24 +1712,10 @@ function dayTotal(date){
     const d=new Date(s.start);
 
     if(sameDay(d,date)){
-      total += s.duration;
+      total+=s.duration;
     }
 
   });
-
-  if(current){
-
-    const d=new Date(current.start);
-
-    if(sameDay(d,date)){
-
-      total += Math.floor(
-        (Date.now()-d)/1000
-      );
-
-    }
-
-  }
 
   return total;
 
@@ -1387,7 +1727,9 @@ function weekStart(date){
 
   const day=d.getDay();
 
-  const diff=d.getDate()-(day===0?6:day-1);
+  const diff=
+    d.getDate()
+    -(day===0?6:day-1);
 
   d.setDate(diff);
 
@@ -1414,34 +1756,23 @@ function weekTotal(){
     const d=new Date(s.start);
 
     if(d>=start && d<=end){
-      total += s.duration;
+      total+=s.duration;
     }
 
   });
-
-  if(current){
-
-    const d=new Date(current.start);
-
-    if(d>=start && d<=end){
-
-      total += Math.floor(
-        (Date.now()-d)/1000
-      );
-
-    }
-
-  }
 
   return total;
 
 }
 
-/* TOAST */
+/* =========================================================
+TOAST
+========================================================= */
 
 function toast(msg){
 
-  const el=document.getElementById('toast');
+  const el=
+    document.getElementById('toast');
 
   el.innerText=msg;
 
@@ -1457,20 +1788,20 @@ function toast(msg){
 
 }
 
-/* SERVICE WORKER */
+/* =========================================================
+SERVICE WORKER
+========================================================= */
 
 if("serviceWorker" in navigator){
 
-  window.addEventListener("load",()=>{
-
-    navigator.serviceWorker
-      .register("./sw.js");
-
-  });
+  navigator.serviceWorker
+    .register("./sw.js");
 
 }
 
-/* INIT */
+/* =========================================================
+INIT
+========================================================= */
 
 if(current){
   startTimer();
