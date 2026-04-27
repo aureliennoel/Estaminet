@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+<title>Pointeuse — L'amusette</title>
+
+<!-- PWA -->
+<meta name="theme-color" content="#18253f">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="L'amusette">
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./icon-192.png">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+<!-- Export -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<style>
+
+:root{
+
+  --navy:#18253f;
+  --navy2:#24365e;
+  --navy3:#30457a;
+
+  --red:#c0392b;
+  --red2:#e74c3c;
+
+  --green:#27ae60;
+
+  --cream:#f8f5f0;
+  --white:#ffffff;
+
+  --gray:#f0eee9;
+  --gray2:#e6e2da;
+
+  --border:#ddd8cf;
+
+  --text:#1a2744;
+  --text2:#667089;
+  --text3:#98a1b4;
+
+  --radius:18px;
+
+  --shadow:
+    0 2px 10px rgba(17,28,50,.08),
+    0 10px 28px rgba(17,28,50,.06);
+
+  --shadow-lg:
+    0 10px 30px rgba(17,28,50,.16);
+
+  --font:'DM Sans',sans-serif;
+  --font-serif:'DM Serif Display',serif;
+
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+body{
+
+  background:var(--cream);
+  color:var(--text);
+
+  font-family:var(--font);
+
+  max-width:430px;
+  margin:auto;
+
+  min-height:100vh;
+
+  padding-bottom:110px;
+
+}
+
+/* LOADER */
+
+.loader{
+
+  position:fixed;
+  inset:0;
+
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+
+  z-index:9999;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+
+  transition:.5s;
+
+}
+
+.loader.hide{
+  opacity:0;
+  visibility:hidden;
+}
+
+.loader-logo{
+
+  width:90px;
+  height:90px;
+
+  border-radius:26px;
+
+  background:linear-gradient(135deg,var(--red),var(--red2));
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:#fff;
+
+  font-size:42px;
+
+  box-shadow:var(--shadow-lg);
+
+  animation:pulse 1.8s infinite;
+
+}
+
+.loader-title{
+
+  margin-top:20px;
+
+  color:#fff;
+
+  font-size:30px;
+
+  font-family:var(--font-serif);
+
+}
+
+.loader-sub{
+
+  margin-top:6px;
+
+  color:rgba(255,255,255,.5);
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+
+  font-size:11px;
+
+}
+
+@keyframes pulse{
+
+  0%{transform:scale(1)}
+  50%{transform:scale(1.06)}
+  100%{transform:scale(1)}
+
+}
+
+/* VIEW */
+
+.view{
+  display:none;
+  padding:0 16px 20px;
+}
+
+.view.active{
+  display:block;
+}
+
+/* HEADER */
+
+.header{
+
+  margin:0 -16px 20px;
+
+  padding:20px;
+
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+
+  position:relative;
+
+  overflow:hidden;
+
+  color:#fff;
+
+}
+
+.header::before{
+
+  content:'';
+
+  position:absolute;
+
+  width:140px;
+  height:140px;
+
+  border-radius:50%;
+
+  background:rgba(255,255,255,.04);
+
+  top:-40px;
+  right:-30px;
+
+}
+
+.header::after{
+
+  content:'';
+
+  position:absolute;
+
+  width:100px;
+  height:100px;
+
+  border-radius:50%;
+
+  background:rgba(231,76,60,.15);
+
+  bottom:-30px;
+  left:40px;
+
+}
+
+.header-top{
+
+  position:relative;
+  z-index:2;
+
+  display:flex;
+  align-items:center;
+
+  gap:14px;
+
+}
+
+.logo{
+
+  width:54px;
+  height:54px;
+
+  border-radius:16px;
+
+  background:linear-gradient(135deg,var(--red),var(--red2));
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:24px;
+
+  box-shadow:var(--shadow-lg);
+
+}
+
+.brand-title{
+
+  font-size:28px;
+
+  font-family:var(--font-serif);
+
+}
+
+.brand-sub{
+
+  margin-top:2px;
+
+  font-size:11px;
+
+  text-transform:uppercase;
+
+  letter-spacing:2px;
+
+  color:rgba(255,255,255,.6);
+
+}
+
+.status{
+
+  position:relative;
+  z-index:2;
+
+  margin-top:18px;
+
+  display:flex;
+  align-items:center;
+
+  gap:8px;
+
+}
+
+.dot{
+
+  width:10px;
+  height:10px;
+
+  border-radius:50%;
+
+  background:#fff;
+
+}
+
+.dot.live{
+
+  background:var(--green);
+
+  animation:live 1.5s infinite;
+
+}
+
+@keyframes live{
+
+  0%{
+    box-shadow:0 0 0 0 rgba(39,174,96,.5)
+  }
+
+  70%{
+    box-shadow:0 0 0 8px rgba(39,174,96,0)
+  }
+
+  100%{
+    box-shadow:0 0 0 0 rgba(39,174,96,0)
+  }
+
+}
+
+.status-text{
+
+  font-size:13px;
+
+  color:rgba(255,255,255,.8);
+
+}
+
+.clock{
+
+  margin-left:auto;
+
+  font-size:13px;
+
+  color:rgba(255,255,255,.5);
+
+}
+
+/* CARD */
+
+.card{
+
+  background:#fff;
+
+  border-radius:var(--radius);
+
+  box-shadow:var(--shadow);
+
+}
+
+/* TIMER */
+
+.timer-card{
+
+  padding:24px 20px;
+
+  text-align:center;
+
+  margin-bottom:16px;
+
+}
+
+.timer-state{
+
+  font-size:12px;
+
+  font-weight:700;
+
+  text-transform:uppercase;
+
+  letter-spacing:2px;
+
+  color:var(--text3);
+
+}
+
+.timer-state.live{
+  color:var(--green);
+}
+
+.timer{
+
+  margin-top:8px;
+
+  font-size:64px;
+
+  font-weight:700;
+
+  letter-spacing:-3px;
+
+}
+
+.timer-sub{
+
+  margin-top:10px;
+
+  color:var(--text2);
+
+  font-size:14px;
+
+}
+
+.btns{
+
+  margin-top:24px;
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:12px;
+
+}
+
+.btn{
+
+  border:none;
+
+  border-radius:14px;
+
+  padding:16px;
+
+  font-family:var(--font);
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:.15s;
+
+}
+
+.btn:active{
+  transform:scale(.97);
+}
+
+.btn-primary{
+
+  background:linear-gradient(135deg,var(--navy),var(--navy3));
+
+  color:#fff;
+
+  box-shadow:0 8px 20px rgba(24,37,63,.25);
+
+}
+
+.btn-danger{
+
+  background:linear-gradient(135deg,var(--red),var(--red2));
+
+  color:#fff;
+
+  box-shadow:0 8px 20px rgba(192,57,43,.25);
+
+}
+
+.btn:disabled{
+  opacity:.4;
+  box-shadow:none;
+}
+
+/* STATS */
+
+.stats{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:12px;
+
+  margin-bottom:16px;
+
+}
+
+.stat{
+
+  padding:18px;
+
+  position:relative;
+
+  overflow:hidden;
+
+}
+
+.stat::after{
+
+  content:'';
+
+  position:absolute;
+
+  left:0;
+  right:0;
+  bottom:0;
+
+  height:4px;
+
+}
+
+.stat.blue::after{
+  background:var(--navy);
+}
+
+.stat.red::after{
+  background:var(--red);
+}
+
+.stat-label{
+
+  font-size:11px;
+
+  font-weight:700;
+
+  text-transform:uppercase;
+
+  letter-spacing:1px;
+
+  color:var(--text3);
+
+}
+
+.stat-value{
+
+  margin-top:8px;
+
+  font-size:32px;
+
+  font-weight:700;
+
+}
+
+/* CONTRACT */
+
+.contract{
+
+  padding:18px;
+
+  margin-bottom:16px;
+
+}
+
+.contract-top{
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+}
+
+.badge{
+
+  padding:6px 12px;
+
+  border-radius:20px;
+
+  background:var(--gray);
+
+  color:var(--text2);
+
+  font-size:12px;
+
+  font-weight:700;
+
+}
+
+.progress{
+
+  margin-top:16px;
+
+  height:8px;
+
+  background:var(--gray2);
+
+  border-radius:10px;
+
+  overflow:hidden;
+
+}
+
+.progress-bar{
+
+  height:100%;
+
+  width:0%;
+
+  background:linear-gradient(90deg,var(--navy),var(--navy3));
+
+  transition:.4s;
+
+}
+
+/* SECTION */
+
+.section-title{
+
+  margin-bottom:12px;
+
+  font-size:20px;
+
+  font-weight:700;
+
+}
+
+/* SESSIONS */
+
+.sessions{
+
+  display:flex;
+  flex-direction:column;
+
+  gap:10px;
+
+}
+
+.session{
+
+  background:#fff;
+
+  border-radius:16px;
+
+  padding:16px;
+
+  display:flex;
+  align-items:center;
+
+  gap:12px;
+
+  box-shadow:var(--shadow);
+
+}
+
+.session-icon{
+
+  width:12px;
+  height:12px;
+
+  border-radius:50%;
+
+  background:var(--navy);
+
+}
+
+.session-info{
+  flex:1;
+}
+
+.session-date{
+  font-weight:700;
+}
+
+.session-hours{
+
+  margin-top:2px;
+
+  font-size:13px;
+
+  color:var(--text2);
+
+}
+
+.session-duration{
+
+  font-size:20px;
+
+  font-weight:700;
+
+}
+
+/* NAV */
+
+.nav{
+
+  position:fixed;
+
+  left:50%;
+  transform:translateX(-50%);
+
+  bottom:0;
+
+  width:100%;
+  max-width:430px;
+
+  background:rgba(255,255,255,.95);
+
+  backdrop-filter:blur(20px);
+
+  border-top:1px solid var(--border);
+
+  display:flex;
+  justify-content:space-around;
+
+  padding:10px 0 22px;
+
+  z-index:100;
+
+}
+
+.nav-item{
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  gap:6px;
+
+  color:var(--text3);
+
+  font-size:11px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+}
+
+.nav-item.active{
+  color:var(--navy);
+}
+
+.nav-icon{
+
+  width:34px;
+  height:34px;
+
+  border-radius:12px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+}
+
+.nav-item.active .nav-icon{
+  background:rgba(24,37,63,.08);
+}
+
+/* TOAST */
+
+.toast{
+
+  position:fixed;
+
+  top:20px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  background:rgba(24,37,63,.95);
+
+  color:#fff;
+
+  padding:14px 22px;
+
+  border-radius:30px;
+
+  z-index:999;
+
+  display:none;
+
+  box-shadow:var(--shadow-lg);
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="loader" id="loader">
+
+  <div class="loader-logo">
+    ⏱
+  </div>
+
+  <div class="loader-title">
+    L'amusette
+  </div>
+
+  <div class="loader-sub">
+    Pointeuse Premium
+  </div>
+
+</div>
+
+<!-- POINTAGE -->
+
+<div class="view active" id="pointage">
+
+  <div class="header">
+
+    <div class="header-top">
+
+      <div class="logo">
+        ⏱
+      </div>
+
+      <div>
+
+        <div class="brand-title">
+          L'amusette
+        </div>
+
+        <div class="brand-sub">
+          Estaminet
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="status">
+
+      <div class="dot" id="dot"></div>
+
+      <div class="status-text" id="statusText">
+        Pas pointé
+      </div>
+
+      <div class="clock" id="clock">
+        00:00
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="card timer-card">
+
+    <div class="timer-state" id="timerState">
+      prêt
+    </div>
+
+    <div class="timer" id="timer">
+      0:00:00
+    </div>
+
+    <div class="timer-sub" id="timerSub">
+      Appuie sur « Je pointe »
+    </div>
+
+    <div class="btns">
+
+      <button class="btn btn-primary"
+              id="startBtn"
+              onclick="startShift()">
+
+        Je pointe
+
+      </button>
+
+      <button class="btn btn-danger"
+              id="stopBtn"
+              onclick="stopShift()"
+              disabled>
+
+        Je dépointe
+
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="stats">
+
+    <div class="card stat blue">
+
+      <div class="stat-label">
+        Aujourd'hui
+      </div>
+
+      <div class="stat-value"
+           id="todayStat">
+
+        0h00
+
+      </div>
+
+    </div>
+
+    <div class="card stat red">
+
+      <div class="stat-label">
+        Cette semaine
+      </div>
+
+      <div class="stat-value"
+           id="weekStat">
+
+        0h00
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="card contract">
+
+    <div class="contract-top">
+
+      <div>
+
+        <div style="font-size:18px;font-weight:700">
+          Contrat
+        </div>
+
+        <div style="font-size:13px;color:var(--text2);margin-top:4px">
+          Évolution hebdomadaire
+        </div>
+
+      </div>
+
+      <div class="badge" id="contractBadge">
+        39h / semaine
+      </div>
+
+    </div>
+
+    <div style="margin-top:18px">
+
+      Écart :
+      <strong id="contractDiff">0h00</strong>
+
+    </div>
+
+    <div class="progress">
+      <div class="progress-bar"
+           id="progress"></div>
+    </div>
+
+  </div>
+
+  <div class="section-title">
+    Dernières sessions
+  </div>
+
+  <div class="sessions"
+       id="sessions"></div>
+
+</div>
+
+<!-- NAV -->
+
+<div class="nav">
+
+  <div class="nav-item active">
+
+    <div class="nav-icon">
+      ⏱
+    </div>
+
+    <div>
+      Pointage
+    </div>
+
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+/* LOADER */
+
+window.addEventListener('load',()=>{
+
+  setTimeout(()=>{
+
+    document.getElementById('loader')
+      .classList.add('hide');
+
+  },1200);
+
+});
+
+/* STATE */
+
+let sessions =
+JSON.parse(localStorage.getItem('premium_sessions') || '[]');
+
+let current =
+JSON.parse(localStorage.getItem('premium_current') || 'null');
+
+let settings =
+JSON.parse(localStorage.getItem('premium_settings') || 'null')
+|| {
+  weeklyHours:39
+};
+
+let timerInterval = null;
+
+/* CLOCK */
+
+function updateClock(){
+
+  const now = new Date();
+
+  document.getElementById('clock').innerText =
+    now.toLocaleTimeString('fr-FR',{
+      hour:'2-digit',
+      minute:'2-digit'
+    });
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+/* START */
+
+function startShift(){
+
+  if(current) return;
+
+  current = {
+    start:new Date().toISOString()
+  };
+
+  localStorage.setItem(
+    'premium_current',
+    JSON.stringify(current)
+  );
+
+  startTimer();
+
+  refresh();
+
+  toast('Entrée pointée ✓');
+
+}
+
+/* STOP */
+
+function stopShift(){
+
+  if(!current) return;
+
+  const end = new Date();
+
+  const sec = Math.floor(
+    (end - new Date(current.start)) / 1000
+  );
+
+  sessions.unshift({
+
+    start:current.start,
+    end:end.toISOString(),
+    duration:sec
+
+  });
+
+  localStorage.setItem(
+    'premium_sessions',
+    JSON.stringify(sessions)
+  );
+
+  current = null;
+
+  localStorage.removeItem('premium_current');
+
+  clearInterval(timerInterval);
+
+  refresh();
+
+  toast('Sortie pointée ✓');
+
+}
+
+/* TIMER */
+
+function startTimer(){
+
+  clearInterval(timerInterval);
+
+  timerInterval = setInterval(()=>{
+
+    if(!current) return;
+
+    const sec = Math.floor(
+      (Date.now() - new Date(current.start)) / 1000
+    );
+
+    document.getElementById('timer')
+      .innerText = formatFull(sec);
+
+  },1000);
+
+}
+
+/* REFRESH */
+
+function refresh(){
+
+  const running = !!current;
+
+  document.getElementById('dot')
+    .className = 'dot'+(running?' live':'');
+
+  document.getElementById('statusText')
+    .innerText = running?'En cours':'Pas pointé';
+
+  document.getElementById('timerState')
+    .className = 'timer-state'+(running?' live':'');
+
+  document.getElementById('timerState')
+    .innerText = running?'EN COURS':'PRÊT';
+
+  document.getElementById('startBtn')
+    .disabled = running;
+
+  document.getElementById('stopBtn')
+    .disabled = !running;
+
+  if(!running){
+
+    document.getElementById('timer')
+      .innerText = '0:00:00';
+
+    document.getElementById('timerSub')
+      .innerText = 'Appuie sur « Je pointe »';
+
+  } else {
+
+    document.getElementById('timerSub')
+      .innerText = 'Depuis '+time(new Date(current.start));
+
+  }
+
+  renderSessions();
+
+  updateStats();
+
+}
+
+/* STATS */
+
+function updateStats(){
+
+  const today = dayTotal(new Date());
+
+  const week = weekTotal();
+
+  document.getElementById('todayStat')
+    .innerText = formatShort(today);
+
+  document.getElementById('weekStat')
+    .innerText = formatShort(week);
+
+  const target = settings.weeklyHours * 3600;
+
+  const diff = week - target;
+
+  document.getElementById('contractDiff')
+    .innerText =
+      (diff>=0?'+':'-')
+      +formatShort(Math.abs(diff));
+
+  document.getElementById('progress')
+    .style.width =
+      Math.min(100,(week/target)*100)+'%';
+
+}
+
+/* RENDER */
+
+function renderSessions(){
+
+  const el =
+    document.getElementById('sessions');
+
+  if(!sessions.length && !current){
+
+    el.innerHTML = `
+      <div style="
+        padding:20px;
+        color:var(--text3);
+        text-align:center
+      ">
+        Aucune session enregistrée
+      </div>
+    `;
+
+    return;
+
+  }
+
+  let html='';
+
+  if(current){
+
+    html += `
+      <div class="session">
+
+        <div class="session-icon"
+             style="background:var(--green)">
+        </div>
+
+        <div class="session-info">
+
+          <div class="session-date">
+            Session en cours
+          </div>
+
+          <div class="session-hours">
+            Depuis ${time(new Date(current.start))}
+          </div>
+
+        </div>
+
+        <div class="session-duration"
+             style="color:var(--green)">
+          LIVE
+        </div>
+
+      </div>
+    `;
+
+  }
+
+  sessions.slice(0,15).forEach(s=>{
+
+    const start = new Date(s.start);
+
+    const end = new Date(s.end);
+
+    html += `
+      <div class="session">
+
+        <div class="session-icon"></div>
+
+        <div class="session-info">
+
+          <div class="session-date">
+            ${dateFull(start)}
+          </div>
+
+          <div class="session-hours">
+            ${time(start)} → ${time(end)}
+          </div>
+
+        </div>
+
+        <div class="session-duration">
+          ${formatShort(s.duration)}
+        </div>
+
+      </div>
+    `;
+
+  });
+
+  el.innerHTML = html;
+
+}
+
+/* HELPERS */
+
+function pad(n){
+  return String(n).padStart(2,'0');
+}
+
+function time(d){
+
+  return pad(d.getHours())
+    +':'
+    +pad(d.getMinutes());
+
+}
+
+function formatShort(sec){
+
+  sec=Math.floor(sec);
+
+  const h=Math.floor(sec/3600);
+
+  const m=Math.floor((sec%3600)/60);
+
+  return h+'h'+pad(m);
+
+}
+
+function formatFull(sec){
+
+  sec=Math.floor(sec);
+
+  const h=Math.floor(sec/3600);
+
+  const m=Math.floor((sec%3600)/60);
+
+  const s=sec%60;
+
+  return h
+    +':'
+    +pad(m)
+    +':'
+    +pad(s);
+
+}
+
+function dateFull(d){
+
+  const days=[
+    'Dimanche',
+    'Lundi',
+    'Mardi',
+    'Mercredi',
+    'Jeudi',
+    'Vendredi',
+    'Samedi'
+  ];
+
+  return days[d.getDay()]
+    +' '
+    +pad(d.getDate())
+    +'/'
+    +pad(d.getMonth()+1);
+
+}
+
+function sameDay(a,b){
+
+  return a.getDate()===b.getDate()
+    && a.getMonth()===b.getMonth()
+    && a.getFullYear()===b.getFullYear();
+
+}
+
+function dayTotal(date){
+
+  let total=0;
+
+  sessions.forEach(s=>{
+
+    const d=new Date(s.start);
+
+    if(sameDay(d,date)){
+      total += s.duration;
+    }
+
+  });
+
+  if(current){
+
+    const d=new Date(current.start);
+
+    if(sameDay(d,date)){
+
+      total += Math.floor(
+        (Date.now()-d)/1000
+      );
+
+    }
+
+  }
+
+  return total;
+
+}
+
+function weekStart(date){
+
+  const d=new Date(date);
+
+  const day=d.getDay();
+
+  const diff=d.getDate()-(day===0?6:day-1);
+
+  d.setDate(diff);
+
+  d.setHours(0,0,0,0);
+
+  return d;
+
+}
+
+function weekTotal(){
+
+  const start=weekStart(new Date());
+
+  const end=new Date(start);
+
+  end.setDate(end.getDate()+6);
+
+  end.setHours(23,59,59,999);
+
+  let total=0;
+
+  sessions.forEach(s=>{
+
+    const d=new Date(s.start);
+
+    if(d>=start && d<=end){
+      total += s.duration;
+    }
+
+  });
+
+  if(current){
+
+    const d=new Date(current.start);
+
+    if(d>=start && d<=end){
+
+      total += Math.floor(
+        (Date.now()-d)/1000
+      );
+
+    }
+
+  }
+
+  return total;
+
+}
+
+/* TOAST */
+
+function toast(msg){
+
+  const el=document.getElementById('toast');
+
+  el.innerText=msg;
+
+  el.style.display='block';
+
+  clearTimeout(el._t);
+
+  el._t=setTimeout(()=>{
+
+    el.style.display='none';
+
+  },2500);
+
+}
+
+/* SERVICE WORKER */
+
+if("serviceWorker" in navigator){
+
+  window.addEventListener("load",()=>{
+
+    navigator.serviceWorker
+      .register("./sw.js");
+
+  });
+
+}
+
+/* INIT */
+
+if(current){
+  startTimer();
+}
+
+refresh();
+
+</script>
+
+</body>
+</html>
