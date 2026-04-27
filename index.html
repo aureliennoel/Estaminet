@@ -1,189 +1,165 @@
-<!-- =========================================================
-L'AMUSETTE — POINTEUSE PREMIUM V3
-VERSION PLUS PREMIUM / PLUS VIVANTE / PLUS MODERNE
-========================================================= -->
+<!DOCTYPE html>
+<html lang="fr">
 
-<!--
-AMÉLIORATIONS AJOUTÉES :
+<head>
 
-✓ navbar plus grosse + emojis retour
-✓ animations premium
-✓ cartes plus vivantes
-✓ meilleur glassmorphism
-✓ gradient plus luxe
-✓ historique plus moderne
-✓ bouton flottant
-✓ effet iPhone premium
-✓ meilleurs espacements
-✓ meilleure hiérarchie
-✓ contrat plus beau
-✓ meilleure lisibilité
-✓ boutons plus élégants
-✓ cards interactives
-✓ ombres premium
-✓ header plus classe
-✓ effets profondeur
-✓ responsive amélioré
+<meta charset="UTF-8">
 
--->
+<meta name="viewport"
+      content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<title>L'amusette — Pointeuse Premium</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap"
+      rel="stylesheet">
 
 <style>
 
 /* =========================================================
-NAVBAR PREMIUM V3
+ROOT
 ========================================================= */
 
-.nav{
+:root{
 
-  position:fixed;
+  --navy:#10203a;
+  --navy2:#1c3157;
+  --navy3:#2b4676;
 
-  bottom:14px;
+  --accent:#b42318;
+  --accent2:#d62828;
 
-  left:50%;
+  --green:#1fa971;
 
-  transform:translateX(-50%);
+  --cream:#f8f5f1;
+  --cream2:#f2eee8;
 
-  width:calc(100% - 22px);
-  max-width:410px;
+  --white:#ffffff;
 
-  padding:12px 10px 18px;
+  --gray:#ece7e0;
+  --gray2:#ddd7ce;
 
-  border-radius:34px;
+  --text:#17253f;
+  --text2:#6f7b92;
+  --text3:#a0a8b8;
 
-  background:
-    rgba(255,255,255,.74);
+  --radius:28px;
 
-  backdrop-filter:blur(26px);
+  --shadow:
+    0 8px 24px rgba(15,23,42,.06);
 
-  -webkit-backdrop-filter:blur(26px);
+  --shadow-lg:
+    0 18px 44px rgba(15,23,42,.14);
 
-  border:
-    1px solid rgba(255,255,255,.65);
-
-  box-shadow:
-    0 12px 40px rgba(17,24,39,.12),
-    0 2px 10px rgba(17,24,39,.06);
-
-  display:flex;
-
-  justify-content:space-around;
-
-  z-index:9999;
+  --font:'DM Sans',sans-serif;
+  --font-serif:'DM Serif Display',serif;
 
 }
 
 /* =========================================================
-NAV ITEM
+GLOBAL
 ========================================================= */
 
-.nav-item{
-
-  flex:1;
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-
-  justify-content:center;
-
-  gap:6px;
-
-  cursor:pointer;
-
-  transition:
-    .22s cubic-bezier(.4,0,.2,1);
-
-  color:var(--text3);
-
-  position:relative;
-
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
 }
 
-.nav-item.active{
-
-  color:var(--navy);
-
+html{
+  scroll-behavior:smooth;
 }
 
-.nav-item.active .nav-icon{
+body{
 
   background:
     linear-gradient(
-      135deg,
-      rgba(20,33,61,.10),
-      rgba(20,33,61,.05)
+      180deg,
+      var(--cream),
+      var(--cream2)
     );
 
-  transform:translateY(-2px);
+  color:var(--text);
+
+  font-family:var(--font);
+
+  min-height:100vh;
+
+  max-width:430px;
+
+  margin:auto;
+
+  padding-bottom:120px;
 
 }
 
+button,input{
+  font-family:var(--font);
+}
+
+button{
+  border:none;
+  cursor:pointer;
+}
+
+input{
+  outline:none;
+}
+
 /* =========================================================
-NAV ICON
+VIEW
 ========================================================= */
 
-.nav-icon{
+.view{
+  display:none;
+  padding:0 18px 30px;
+  animation:fade .22s ease;
+}
 
-  width:52px;
-  height:52px;
+.view.active{
+  display:block;
+}
 
-  border-radius:18px;
+@keyframes fade{
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  from{
+    opacity:0;
+    transform:translateY(8px);
+  }
 
-  transition:
-    .25s cubic-bezier(.4,0,.2,1);
-
-  font-size:24px;
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 
 }
 
 /* =========================================================
-NAV LABEL
-========================================================= */
-
-.nav-label{
-
-  font-size:11px;
-
-  font-weight:700;
-
-  letter-spacing:.3px;
-
-}
-
-/* =========================================================
-HEADER ULTRA PREMIUM
+HEADER
 ========================================================= */
 
 .header{
 
-  margin:0 -18px 26px;
+  margin:0 -18px 28px;
 
-  padding:
-    28px 22px 34px;
+  padding:28px 22px 34px;
+
+  border-radius:
+    0 0 36px 36px;
 
   background:
     linear-gradient(
       145deg,
-      #10203a 0%,
-      #182c4f 60%,
-      #223764 100%
+      var(--navy),
+      var(--navy2)
     );
 
   position:relative;
 
   overflow:hidden;
 
-  border-radius:
-    0 0 34px 34px;
-
   box-shadow:
-    0 10px 40px rgba(16,32,58,.24);
+    0 12px 40px rgba(16,32,58,.22);
 
 }
 
@@ -212,68 +188,186 @@ HEADER ULTRA PREMIUM
 
   position:absolute;
 
-  width:140px;
-  height:140px;
+  width:120px;
+  height:120px;
 
   border-radius:50%;
 
   background:
     rgba(214,40,40,.10);
 
+  left:-20px;
   bottom:-50px;
-  left:-10px;
 
 }
 
-/* =========================================================
-LOGO
-========================================================= */
+.header-top{
+
+  display:flex;
+  align-items:center;
+  gap:16px;
+
+  position:relative;
+  z-index:2;
+
+}
 
 .logo{
 
-  width:68px;
-  height:68px;
+  width:70px;
+  height:70px;
 
   border-radius:24px;
 
   background:
     linear-gradient(
       145deg,
-      #b42318,
-      #d62828
+      var(--accent),
+      var(--accent2)
     );
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  box-shadow:
-    0 10px 30px rgba(214,40,40,.28);
+  font-size:32px;
 
-  font-size:30px;
+  box-shadow:
+    0 10px 28px rgba(214,40,40,.28);
+
+}
+
+.brand-title{
+
+  font-size:32px;
+
+  color:white;
+
+  font-family:var(--font-serif);
+
+}
+
+.brand-sub{
+
+  margin-top:4px;
+
+  font-size:11px;
+
+  text-transform:uppercase;
+
+  letter-spacing:2px;
+
+  color:rgba(255,255,255,.52);
+
+}
+
+.status{
+
+  margin-top:24px;
+
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  position:relative;
+  z-index:2;
+
+}
+
+.dot{
+
+  width:10px;
+  height:10px;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.25);
+
+}
+
+.dot.live{
+
+  background:var(--green);
+
+  animation:pulse 1.8s infinite;
+
+}
+
+@keyframes pulse{
+
+  0%{
+    box-shadow:0 0 0 0 rgba(31,169,113,.5);
+  }
+
+  70%{
+    box-shadow:0 0 0 8px rgba(31,169,113,0);
+  }
+
+  100%{
+    box-shadow:0 0 0 0 rgba(31,169,113,0);
+  }
+
+}
+
+.status-text{
+
+  color:
+    rgba(255,255,255,.84);
+
+  font-size:13px;
+
+}
+
+.clock{
+
+  margin-left:auto;
+
+  font-size:13px;
+
+  color:
+    rgba(255,255,255,.44);
 
 }
 
 /* =========================================================
-TIMER CARD
+CARD
+========================================================= */
+
+.card{
+
+  background:
+    rgba(255,255,255,.82);
+
+  backdrop-filter:blur(20px);
+
+  border:
+    1px solid rgba(255,255,255,.65);
+
+  border-radius:var(--radius);
+
+  box-shadow:var(--shadow);
+
+  transition:
+    .22s cubic-bezier(.4,0,.2,1);
+
+}
+
+.card:hover{
+  transform:translateY(-1px);
+}
+
+/* =========================================================
+TIMER
 ========================================================= */
 
 .timer-card{
 
   padding:34px 24px;
 
-  border-radius:30px;
+  text-align:center;
 
-  background:
-    rgba(255,255,255,.84);
-
-  backdrop-filter:blur(20px);
-
-  border:
-    1px solid rgba(255,255,255,.7);
-
-  box-shadow:
-    0 8px 30px rgba(16,24,40,.08);
+  margin-bottom:18px;
 
   position:relative;
 
@@ -287,8 +381,8 @@ TIMER CARD
 
   position:absolute;
 
-  left:0;
   top:0;
+  left:0;
   right:0;
 
   height:5px;
@@ -302,47 +396,72 @@ TIMER CARD
 
 }
 
-/* =========================================================
-TIMER
-========================================================= */
+.timer-state{
+
+  font-size:11px;
+
+  font-weight:700;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+
+  color:var(--text3);
+
+}
+
+.timer-state.live{
+  color:var(--green);
+}
 
 .timer{
 
-  font-size:72px;
+  margin-top:12px;
+
+  font-size:74px;
 
   font-weight:700;
 
   letter-spacing:-4px;
 
-  margin-top:12px;
-
   color:var(--text);
-
-  text-shadow:
-    0 2px 8px rgba(0,0,0,.03);
 
 }
 
-/* =========================================================
-BUTTONS
-========================================================= */
+.timer-sub{
+
+  margin-top:12px;
+
+  color:var(--text2);
+
+  font-size:14px;
+
+}
+
+.btns{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:12px;
+
+  margin-top:28px;
+
+}
 
 .btn{
 
-  border:none;
+  padding:18px;
 
   border-radius:22px;
 
-  padding:18px;
-
-  cursor:pointer;
+  font-size:15px;
 
   font-weight:700;
 
-  font-size:15px;
-
   transition:
-    .2s cubic-bezier(.4,0,.2,1);
+    .22s cubic-bezier(.4,0,.2,1);
 
   position:relative;
 
@@ -350,26 +469,8 @@ BUTTONS
 
 }
 
-.btn::before{
-
-  content:'';
-
-  position:absolute;
-
-  inset:0;
-
-  background:
-    linear-gradient(
-      rgba(255,255,255,.12),
-      rgba(255,255,255,0)
-    );
-
-}
-
 .btn:active{
-
   transform:scale(.96);
-
 }
 
 .btn-primary{
@@ -377,14 +478,14 @@ BUTTONS
   background:
     linear-gradient(
       145deg,
-      #10203a,
-      #223764
+      var(--navy),
+      var(--navy3)
     );
 
   color:white;
 
   box-shadow:
-    0 10px 24px rgba(20,33,61,.24);
+    0 10px 24px rgba(16,32,58,.22);
 
 }
 
@@ -393,8 +494,8 @@ BUTTONS
   background:
     linear-gradient(
       145deg,
-      #b42318,
-      #d62828
+      var(--accent),
+      var(--accent2)
     );
 
   color:white;
@@ -402,6 +503,10 @@ BUTTONS
   box-shadow:
     0 10px 24px rgba(214,40,40,.18);
 
+}
+
+.btn:disabled{
+  opacity:.35;
 }
 
 /* =========================================================
@@ -416,23 +521,13 @@ STATS
 
   gap:14px;
 
-  margin-top:18px;
+  margin-bottom:18px;
 
 }
 
 .stat{
 
   padding:20px;
-
-  border-radius:26px;
-
-  background:
-    rgba(255,255,255,.82);
-
-  backdrop-filter:blur(20px);
-
-  box-shadow:
-    0 8px 28px rgba(16,24,40,.06);
 
   position:relative;
 
@@ -452,10 +547,46 @@ STATS
   border-radius:50%;
 
   background:
-    rgba(255,255,255,.25);
+    rgba(255,255,255,.24);
 
   top:-70px;
   right:-40px;
+
+}
+
+.stat::after{
+
+  content:'';
+
+  position:absolute;
+
+  left:0;
+  right:0;
+  bottom:0;
+
+  height:4px;
+
+}
+
+.stat.blue::after{
+  background:var(--navy);
+}
+
+.stat.red::after{
+  background:var(--accent2);
+}
+
+.stat-label{
+
+  font-size:11px;
+
+  font-weight:700;
+
+  letter-spacing:1px;
+
+  text-transform:uppercase;
+
+  color:var(--text3);
 
 }
 
@@ -472,8 +603,66 @@ STATS
 }
 
 /* =========================================================
+SECTION
+========================================================= */
+
+.section-header{
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:14px;
+
+}
+
+.section-title{
+
+  font-size:24px;
+
+  font-weight:700;
+
+}
+
+.add-btn{
+
+  width:54px;
+  height:54px;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--navy),
+      var(--navy3)
+    );
+
+  color:white;
+
+  font-size:24px;
+
+  box-shadow:
+    0 10px 24px rgba(16,32,58,.22);
+
+  transition:
+    .22s cubic-bezier(.4,0,.2,1);
+
+}
+
+.add-btn:active{
+  transform:scale(.92);
+}
+
+/* =========================================================
 SESSIONS
 ========================================================= */
+
+.sessions{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
 
 .session{
 
@@ -487,16 +676,14 @@ SESSIONS
   padding:18px;
 
   display:flex;
-
   align-items:center;
-
   gap:14px;
 
   box-shadow:
-    0 8px 24px rgba(17,24,39,.06);
+    0 8px 24px rgba(15,23,42,.06);
 
   transition:
-    .2s cubic-bezier(.4,0,.2,1);
+    .22s cubic-bezier(.4,0,.2,1);
 
 }
 
@@ -504,9 +691,6 @@ SESSIONS
 
   transform:
     translateY(-2px);
-
-  box-shadow:
-    0 14px 32px rgba(17,24,39,.10);
 
 }
 
@@ -525,25 +709,105 @@ SESSIONS
     );
 
   box-shadow:
-    0 0 0 6px rgba(20,33,61,.08);
+    0 0 0 6px rgba(16,32,58,.08);
+
+}
+
+.session-info{
+  flex:1;
+}
+
+.session-date{
+
+  font-size:15px;
+
+  font-weight:700;
+
+}
+
+.session-hours{
+
+  margin-top:5px;
+
+  font-size:13px;
+
+  color:var(--text2);
+
+}
+
+.session-duration{
+
+  font-size:24px;
+
+  font-weight:700;
+
+}
+
+.session-actions{
+
+  display:flex;
+  gap:8px;
+
+}
+
+.action{
+
+  width:38px;
+  height:38px;
+
+  border-radius:14px;
+
+  font-size:15px;
+
+  transition:.15s;
+
+}
+
+.action:active{
+  transform:scale(.9);
+}
+
+.edit{
+  background:#eef2ff;
+}
+
+.delete{
+  background:#ffe9e9;
+}
+
+/* =========================================================
+PAGE TITLE
+========================================================= */
+
+.page-title{
+
+  padding:24px 0 22px;
+
+  text-align:center;
+
+  font-size:32px;
+
+  font-family:var(--font-serif);
 
 }
 
 /* =========================================================
-CONTRACT CARD
+CONTRACT
 ========================================================= */
 
 .contract-card{
 
   padding:26px;
 
-  border-radius:30px;
+  margin-bottom:18px;
+
+  border-radius:32px;
 
   background:
     linear-gradient(
       145deg,
-      #10203a,
-      #1f3560
+      var(--navy),
+      var(--navy2)
     );
 
   color:white;
@@ -563,22 +827,62 @@ CONTRACT CARD
 
   position:absolute;
 
-  width:200px;
-  height:200px;
+  width:220px;
+  height:220px;
 
   border-radius:50%;
 
   background:
-    rgba(255,255,255,.04);
+    rgba(255,255,255,.05);
 
-  top:-100px;
-  right:-80px;
+  top:-120px;
+  right:-70px;
+
+}
+
+.contract-top{
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  position:relative;
+  z-index:2;
+
+}
+
+.contract-badge{
+
+  background:
+    rgba(255,255,255,.10);
+
+  border:
+    1px solid rgba(255,255,255,.10);
+
+  padding:8px 14px;
+
+  border-radius:30px;
+
+  font-size:12px;
+
+  font-weight:700;
+
+}
+
+.solde-label{
+
+  margin-top:24px;
+
+  font-size:13px;
+
+  color:
+    rgba(255,255,255,.62);
 
 }
 
 .solde-value{
 
-  margin-top:18px;
+  margin-top:14px;
 
   font-size:58px;
 
@@ -607,100 +911,60 @@ CONTRACT CARD
 
   height:100%;
 
+  width:0%;
+
   border-radius:30px;
 
   background:
     linear-gradient(
       90deg,
-      #ffffff,
-      rgba(255,255,255,.65)
+      #fff,
+      rgba(255,255,255,.7)
     );
 
 }
 
 /* =========================================================
-SECTION TITLE
+SETTINGS
 ========================================================= */
 
-.section-title{
+.settings{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
 
-  font-size:24px;
+.setting{
+
+  padding:18px;
+
+}
+
+.setting label{
+
+  display:block;
+
+  margin-bottom:10px;
+
+  font-size:11px;
 
   font-weight:700;
 
-  letter-spacing:-.5px;
+  text-transform:uppercase;
+
+  letter-spacing:1px;
+
+  color:var(--text3);
 
 }
 
-/* =========================================================
-ADD BUTTON FLOATING
-========================================================= */
+.setting input{
 
-.add-btn{
+  width:100%;
 
-  width:52px;
-  height:52px;
-
-  border-radius:18px;
+  background:var(--gray);
 
   border:none;
-
-  cursor:pointer;
-
-  background:
-    linear-gradient(
-      145deg,
-      #10203a,
-      #223764
-    );
-
-  color:white;
-
-  font-size:24px;
-
-  box-shadow:
-    0 10px 24px rgba(20,33,61,.22);
-
-  transition:
-    .2s cubic-bezier(.4,0,.2,1);
-
-}
-
-.add-btn:active{
-
-  transform:scale(.92);
-
-}
-
-/* =========================================================
-MODAL
-========================================================= */
-
-.modal{
-
-  background:
-    rgba(255,255,255,.92);
-
-  backdrop-filter:blur(28px);
-
-  border-radius:
-    34px 34px 0 0;
-
-  padding:
-    26px 22px 42px;
-
-  box-shadow:
-    0 -10px 40px rgba(17,24,39,.12);
-
-}
-
-.field input{
-
-  background:
-    rgba(240,235,229,.7);
-
-  border:
-    1px solid rgba(255,255,255,.6);
 
   border-radius:18px;
 
@@ -711,138 +975,32 @@ MODAL
 }
 
 /* =========================================================
-TOAST
+NAVBAR
 ========================================================= */
 
-.toast{
+.nav{
 
   position:fixed;
 
-  top:22px;
-
   left:50%;
-
   transform:translateX(-50%);
 
+  bottom:14px;
+
+  width:calc(100% - 24px);
+  max-width:406px;
+
+  padding:12px 10px 18px;
+
+  border-radius:34px;
+
   background:
-    rgba(16,32,58,.96);
+    rgba(255,255,255,.74);
 
-  color:white;
+  backdrop-filter:blur(26px);
 
-  padding:
-    14px 24px;
-
-  border-radius:30px;
-
-  font-size:14px;
-
-  font-weight:600;
-
-  backdrop-filter:blur(20px);
+  border:
+    1px solid rgba(255,255,255,.66);
 
   box-shadow:
-    0 10px 30px rgba(16,32,58,.18);
-
-}
-
-/* =========================================================
-SMOOTH IOS EFFECT
-========================================================= */
-
-.card,
-.session,
-.btn,
-.nav-item,
-.nav-icon,
-.stat{
-
-  transition:
-    .25s cubic-bezier(.4,0,.2,1);
-
-}
-
-/* =========================================================
-BODY
-========================================================= */
-
-body{
-
-  background:
-    linear-gradient(
-      180deg,
-      #f8f5f1 0%,
-      #f2eee8 100%
-    );
-
-}
-
-</style>
-
-<!-- =========================================================
-REMPLACE TA NAVBAR PAR ÇA
-========================================================= -->
-
-<div class="nav">
-
-  <div class="nav-item active"
-       id="nav-pointage"
-       onclick="goTo('pointage')">
-
-    <div class="nav-icon">
-      ⏱️
-    </div>
-
-    <div class="nav-label">
-      Pointage
-    </div>
-
-  </div>
-
-  <div class="nav-item"
-       id="nav-history"
-       onclick="goTo('history')">
-
-    <div class="nav-icon">
-      📅
-    </div>
-
-    <div class="nav-label">
-      Historique
-    </div>
-
-  </div>
-
-  <div class="nav-item"
-       id="nav-contract"
-       onclick="goTo('contract')">
-
-    <div class="nav-icon">
-      📊
-    </div>
-
-    <div class="nav-label">
-      Contrat
-    </div>
-
-  </div>
-
-</div>
-
-<!-- =========================================================
-REMPLACE LE LOGO PAR ÇA
-========================================================= -->
-
-<div class="logo">
-  🍷
-</div>
-
-<!-- =========================================================
-REMPLACE LE BOUTON AJOUT PAR ÇA
-========================================================= -->
-
-<button class="add-btn"
-        onclick="openModal()">
-
-  ＋
-
-</button>
+    0 12
