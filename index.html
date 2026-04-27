@@ -1,6 +1,5 @@
 <!-- =========================================================
-ULTIMATE POINTEUSE — L'AMUSETTE
-VERSION FULL PREMIUM
+L'AMUSETTE — POINTEUSE PREMIUM V2
 INDEX.HTML
 ========================================================= -->
 
@@ -14,7 +13,7 @@ INDEX.HTML
 <meta name="viewport"
       content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 
-<title>Pointeuse — L'amusette</title>
+<title>L'amusette — Pointeuse</title>
 
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
 
@@ -26,33 +25,33 @@ ROOT
 
 :root{
 
-  --navy:#17243e;
-  --navy2:#22345d;
-  --navy3:#31487b;
+  --navy:#14213d;
+  --navy2:#1d3157;
+  --navy3:#304878;
 
-  --red:#c0392b;
-  --red2:#e74c3c;
+  --accent:#b42318;
+  --accent2:#d62828;
 
-  --green:#27ae60;
+  --green:#1fa971;
 
-  --cream:#f7f4ef;
+  --cream:#f8f5f1;
   --white:#ffffff;
 
-  --gray:#efede8;
-  --gray2:#e3dfd7;
+  --gray:#efebe5;
+  --gray2:#e2ddd5;
 
-  --text:#1b2846;
-  --text2:#68738c;
-  --text3:#9ca5b7;
+  --text:#18253f;
+  --text2:#69758e;
+  --text3:#9ba4b5;
 
-  --radius:20px;
+  --radius:24px;
 
   --shadow:
-    0 2px 12px rgba(17,28,50,.08),
-    0 10px 26px rgba(17,28,50,.06);
+    0 2px 10px rgba(16,24,40,.05),
+    0 10px 30px rgba(16,24,40,.07);
 
   --shadow-lg:
-    0 10px 40px rgba(17,28,50,.18);
+    0 12px 40px rgba(16,24,40,.16);
 
   --font:'DM Sans',sans-serif;
   --font-serif:'DM Serif Display',serif;
@@ -68,6 +67,10 @@ GLOBAL
   padding:0;
   box-sizing:border-box;
   -webkit-tap-highlight-color:transparent;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
@@ -92,17 +95,33 @@ button,input{
   font-family:var(--font);
 }
 
+input{
+  outline:none;
+}
+
 /* =========================================================
 VIEW
 ========================================================= */
 
 .view{
   display:none;
-  padding:0 16px 20px;
+  padding:0 18px 30px;
+  animation:fade .25s ease;
 }
 
 .view.active{
   display:block;
+}
+
+@keyframes fade{
+  from{
+    opacity:0;
+    transform:translateY(6px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 /* =========================================================
@@ -111,9 +130,9 @@ HEADER
 
 .header{
 
-  margin:0 -16px 22px;
+  margin:0 -18px 24px;
 
-  padding:22px;
+  padding:24px 22px 28px;
 
   background:
     linear-gradient(
@@ -122,11 +141,11 @@ HEADER
       var(--navy2)
     );
 
-  color:#fff;
+  position:relative;
 
   overflow:hidden;
 
-  position:relative;
+  color:#fff;
 
 }
 
@@ -136,59 +155,79 @@ HEADER
 
   position:absolute;
 
-  width:150px;
-  height:150px;
+  width:180px;
+  height:180px;
 
   border-radius:50%;
 
   background:rgba(255,255,255,.04);
 
+  top:-70px;
   right:-40px;
-  top:-50px;
+
+}
+
+.header::after{
+
+  content:'';
+
+  position:absolute;
+
+  width:100px;
+  height:100px;
+
+  border-radius:50%;
+
+  background:rgba(255,255,255,.03);
+
+  bottom:-30px;
+  left:40px;
 
 }
 
 .header-top{
 
   display:flex;
-
   align-items:center;
 
   gap:14px;
 
   position:relative;
-
   z-index:2;
 
 }
 
 .logo{
 
-  width:58px;
-  height:58px;
+  width:60px;
+  height:60px;
 
-  border-radius:18px;
+  border-radius:20px;
 
   background:
     linear-gradient(
       135deg,
-      var(--red),
-      var(--red2)
+      var(--accent),
+      var(--accent2)
     );
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  font-size:28px;
-
   box-shadow:var(--shadow-lg);
 
 }
 
+.logo svg{
+  width:28px;
+  height:28px;
+  fill:#fff;
+}
+
 .brand-title{
 
-  font-size:28px;
+  font-size:30px;
 
   font-family:var(--font-serif);
 
@@ -196,13 +235,13 @@ HEADER
 
 .brand-sub{
 
-  margin-top:2px;
+  margin-top:4px;
 
   font-size:11px;
 
-  letter-spacing:2px;
-
   text-transform:uppercase;
+
+  letter-spacing:2px;
 
   color:rgba(255,255,255,.55);
 
@@ -210,7 +249,7 @@ HEADER
 
 .status{
 
-  margin-top:20px;
+  margin-top:22px;
 
   display:flex;
   align-items:center;
@@ -229,7 +268,7 @@ HEADER
 
   border-radius:50%;
 
-  background:rgba(255,255,255,.3);
+  background:rgba(255,255,255,.25);
 
 }
 
@@ -237,29 +276,32 @@ HEADER
 
   background:var(--green);
 
-  animation:pulse 1.6s infinite;
+  animation:pulse 1.7s infinite;
 
 }
 
 @keyframes pulse{
 
   0%{
-    box-shadow:0 0 0 0 rgba(39,174,96,.5)
+    box-shadow:0 0 0 0 rgba(31,169,113,.5)
   }
 
   70%{
-    box-shadow:0 0 0 8px rgba(39,174,96,0)
+    box-shadow:0 0 0 8px rgba(31,169,113,0)
   }
 
   100%{
-    box-shadow:0 0 0 0 rgba(39,174,96,0)
+    box-shadow:0 0 0 0 rgba(31,169,113,0)
   }
 
 }
 
 .status-text{
+
   font-size:13px;
-  color:rgba(255,255,255,.8);
+
+  color:rgba(255,255,255,.82);
+
 }
 
 .clock{
@@ -278,12 +320,22 @@ CARDS
 
 .card{
 
-  background:#fff;
+  background:rgba(255,255,255,.86);
+
+  backdrop-filter:blur(16px);
+
+  border:1px solid rgba(255,255,255,.5);
 
   border-radius:var(--radius);
 
   box-shadow:var(--shadow);
 
+  transition:.25s cubic-bezier(.4,0,.2,1);
+
+}
+
+.card:hover{
+  transform:translateY(-1px);
 }
 
 /* =========================================================
@@ -292,17 +344,17 @@ TIMER
 
 .timer-card{
 
-  padding:26px 20px;
+  padding:30px 22px;
 
   text-align:center;
 
-  margin-bottom:16px;
+  margin-bottom:18px;
 
 }
 
 .timer-state{
 
-  font-size:12px;
+  font-size:11px;
 
   font-weight:700;
 
@@ -320,13 +372,13 @@ TIMER
 
 .timer{
 
-  margin-top:8px;
+  margin-top:10px;
 
-  font-size:64px;
+  font-size:66px;
 
   font-weight:700;
 
-  letter-spacing:-3px;
+  letter-spacing:-4px;
 
 }
 
@@ -334,9 +386,9 @@ TIMER
 
   margin-top:10px;
 
-  font-size:14px;
-
   color:var(--text2);
+
+  font-size:14px;
 
 }
 
@@ -348,7 +400,7 @@ TIMER
 
   gap:12px;
 
-  margin-top:24px;
+  margin-top:26px;
 
 }
 
@@ -356,7 +408,7 @@ TIMER
 
   border:none;
 
-  border-radius:16px;
+  border-radius:18px;
 
   padding:16px;
 
@@ -364,7 +416,9 @@ TIMER
 
   font-weight:700;
 
-  transition:.15s;
+  font-size:15px;
+
+  transition:.2s cubic-bezier(.4,0,.2,1);
 
 }
 
@@ -383,6 +437,9 @@ TIMER
 
   color:#fff;
 
+  box-shadow:
+    0 8px 20px rgba(20,33,61,.22);
+
 }
 
 .btn-danger{
@@ -390,16 +447,19 @@ TIMER
   background:
     linear-gradient(
       135deg,
-      var(--red),
-      var(--red2)
+      var(--accent),
+      var(--accent2)
     );
 
   color:#fff;
 
+  box-shadow:
+    0 8px 20px rgba(214,40,40,.18);
+
 }
 
 .btn:disabled{
-  opacity:.4;
+  opacity:.35;
 }
 
 /* =========================================================
@@ -412,9 +472,9 @@ MINI STATS
 
   grid-template-columns:1fr 1fr;
 
-  gap:12px;
+  gap:14px;
 
-  margin-bottom:16px;
+  margin-bottom:18px;
 
 }
 
@@ -447,18 +507,18 @@ MINI STATS
 }
 
 .stat.red::after{
-  background:var(--red);
+  background:var(--accent);
 }
 
 .stat-label{
 
   font-size:11px;
 
+  font-weight:700;
+
   text-transform:uppercase;
 
   letter-spacing:1px;
-
-  font-weight:700;
 
   color:var(--text3);
 
@@ -466,108 +526,11 @@ MINI STATS
 
 .stat-value{
 
-  margin-top:8px;
+  margin-top:10px;
 
-  font-size:30px;
-
-  font-weight:700;
-
-}
-
-/* =========================================================
-CONTRAT
-========================================================= */
-
-.contract{
-
-  padding:18px;
-
-  margin-bottom:18px;
-
-}
-
-.contract-top{
-
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-}
-
-.contract-badge{
-
-  background:var(--gray);
-
-  padding:6px 12px;
-
-  border-radius:30px;
-
-  font-size:12px;
+  font-size:32px;
 
   font-weight:700;
-
-  color:var(--text2);
-
-}
-
-.contract-solde{
-
-  margin-top:18px;
-
-}
-
-.contract-solde-label{
-
-  font-size:13px;
-
-  color:var(--text2);
-
-}
-
-.contract-solde-value{
-
-  margin-top:6px;
-
-  font-size:40px;
-
-  font-weight:700;
-
-}
-
-.contract-solde-value.pos{
-  color:var(--green);
-}
-
-.contract-solde-value.neg{
-  color:var(--red);
-}
-
-.progress{
-
-  margin-top:18px;
-
-  height:8px;
-
-  border-radius:30px;
-
-  overflow:hidden;
-
-  background:var(--gray2);
-
-}
-
-.progress-bar{
-
-  height:100%;
-
-  width:0%;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--navy),
-      var(--navy3)
-    );
 
 }
 
@@ -581,13 +544,13 @@ SECTION
   justify-content:space-between;
   align-items:center;
 
-  margin-bottom:12px;
+  margin-bottom:14px;
 
 }
 
 .section-title{
 
-  font-size:20px;
+  font-size:22px;
 
   font-weight:700;
 
@@ -595,8 +558,8 @@ SECTION
 
 .add-btn{
 
-  width:38px;
-  height:38px;
+  width:40px;
+  height:40px;
 
   border:none;
 
@@ -611,10 +574,24 @@ SECTION
 
   color:#fff;
 
-  font-size:22px;
-
   cursor:pointer;
 
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  transition:.2s;
+
+}
+
+.add-btn:active{
+  transform:scale(.92);
+}
+
+.add-btn svg{
+  width:18px;
+  height:18px;
+  fill:#fff;
 }
 
 /* =========================================================
@@ -622,29 +599,34 @@ SESSIONS
 ========================================================= */
 
 .sessions{
-
   display:flex;
   flex-direction:column;
-
-  gap:10px;
-
+  gap:12px;
 }
 
 .session{
 
-  background:#fff;
+  background:rgba(255,255,255,.82);
 
-  border-radius:18px;
+  backdrop-filter:blur(16px);
+
+  border-radius:22px;
 
   padding:16px;
-
-  box-shadow:var(--shadow);
 
   display:flex;
   align-items:center;
 
-  gap:12px;
+  gap:14px;
 
+  box-shadow:var(--shadow);
+
+  transition:.25s;
+
+}
+
+.session:hover{
+  transform:translateY(-1px);
 }
 
 .session-dot{
@@ -663,7 +645,11 @@ SESSIONS
 }
 
 .session-date{
+
   font-weight:700;
+
+  font-size:15px;
+
 }
 
 .session-hours{
@@ -678,7 +664,7 @@ SESSIONS
 
 .session-duration{
 
-  font-size:20px;
+  font-size:22px;
 
   font-weight:700;
 
@@ -694,15 +680,21 @@ SESSIONS
 
 .action{
 
-  width:34px;
-  height:34px;
+  width:36px;
+  height:36px;
 
   border:none;
 
-  border-radius:12px;
+  border-radius:14px;
 
   cursor:pointer;
 
+  transition:.15s;
+
+}
+
+.action:active{
+  transform:scale(.9);
 }
 
 .edit{
@@ -710,7 +702,7 @@ SESSIONS
 }
 
 .delete{
-  background:#ffe7e7;
+  background:#ffe8e8;
 }
 
 /* =========================================================
@@ -719,13 +711,112 @@ PAGE TITLE
 
 .page-title{
 
-  padding:20px 0 18px;
+  padding:24px 0 20px;
 
   text-align:center;
 
-  font-size:28px;
+  font-size:30px;
 
   font-family:var(--font-serif);
+
+}
+
+/* =========================================================
+CONTRAT
+========================================================= */
+
+.contract-card{
+
+  padding:22px;
+
+  margin-bottom:18px;
+
+}
+
+.contract-top{
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+}
+
+.contract-badge{
+
+  background:var(--gray);
+
+  border-radius:30px;
+
+  padding:8px 14px;
+
+  font-size:12px;
+
+  font-weight:700;
+
+  color:var(--text2);
+
+}
+
+.solde-label{
+
+  margin-top:24px;
+
+  font-size:13px;
+
+  color:var(--text2);
+
+}
+
+.solde-value{
+
+  margin-top:6px;
+
+  font-size:52px;
+
+  font-weight:700;
+
+  letter-spacing:-2px;
+
+}
+
+.solde-value.pos{
+  color:var(--green);
+}
+
+.solde-value.neg{
+  color:var(--accent);
+}
+
+.progress{
+
+  margin-top:18px;
+
+  height:10px;
+
+  border-radius:30px;
+
+  background:var(--gray2);
+
+  overflow:hidden;
+
+}
+
+.progress-bar{
+
+  width:0%;
+
+  height:100%;
+
+  border-radius:30px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--navy),
+      var(--navy3)
+    );
+
+  transition:.35s cubic-bezier(.4,0,.2,1);
 
 }
 
@@ -734,23 +825,14 @@ SETTINGS
 ========================================================= */
 
 .settings{
-
   display:flex;
   flex-direction:column;
-
   gap:14px;
-
 }
 
 .setting{
 
-  background:#fff;
-
-  border-radius:18px;
-
   padding:18px;
-
-  box-shadow:var(--shadow);
 
 }
 
@@ -758,7 +840,7 @@ SETTINGS
 
   display:block;
 
-  font-size:12px;
+  font-size:11px;
 
   text-transform:uppercase;
 
@@ -768,7 +850,7 @@ SETTINGS
 
   color:var(--text3);
 
-  margin-bottom:8px;
+  margin-bottom:10px;
 
 }
 
@@ -780,42 +862,47 @@ SETTINGS
 
   background:var(--gray);
 
-  padding:14px;
+  padding:15px;
 
-  border-radius:14px;
+  border-radius:16px;
 
   font-size:16px;
+
+  color:var(--text);
 
 }
 
 /* =========================================================
-NAV
+NAVBAR
 ========================================================= */
 
 .nav{
 
   position:fixed;
 
-  bottom:0;
-
   left:50%;
-
   transform:translateX(-50%);
 
-  width:100%;
-  max-width:430px;
+  bottom:12px;
 
-  background:rgba(255,255,255,.96);
+  width:calc(100% - 24px);
+  max-width:406px;
 
-  backdrop-filter:blur(20px);
+  background:rgba(255,255,255,.72);
 
-  border-top:1px solid var(--gray2);
+  backdrop-filter:blur(22px);
+
+  border:1px solid rgba(255,255,255,.7);
+
+  border-radius:28px;
+
+  padding:12px 10px;
 
   display:flex;
-
   justify-content:space-around;
 
-  padding:10px 0 24px;
+  box-shadow:
+    0 10px 40px rgba(17,28,50,.12);
 
 }
 
@@ -835,6 +922,8 @@ NAV
 
   font-weight:600;
 
+  transition:.2s;
+
 }
 
 .nav-item.active{
@@ -843,21 +932,32 @@ NAV
 
 .nav-icon{
 
-  width:36px;
-  height:36px;
+  width:42px;
+  height:42px;
 
-  border-radius:12px;
+  border-radius:16px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  font-size:20px;
+  transition:.2s;
 
 }
 
 .nav-item.active .nav-icon{
-  background:rgba(23,36,62,.08);
+
+  background:rgba(20,33,61,.08);
+
+}
+
+.nav-icon svg{
+
+  width:22px;
+  height:22px;
+
+  fill:currentColor;
+
 }
 
 /* =========================================================
@@ -875,7 +975,7 @@ MODAL
 
   align-items:flex-end;
 
-  z-index:999;
+  z-index:9999;
 
 }
 
@@ -888,21 +988,34 @@ MODAL
   width:100%;
   max-width:430px;
 
-  background:#fff;
+  background:rgba(255,255,255,.92);
 
-  border-radius:28px 28px 0 0;
+  backdrop-filter:blur(24px);
+
+  border-radius:30px 30px 0 0;
 
   padding:24px 20px 40px;
 
+  animation:modal .25s ease;
+
+}
+
+@keyframes modal{
+  from{
+    transform:translateY(100%);
+  }
+  to{
+    transform:translateY(0);
+  }
 }
 
 .modal-title{
 
-  font-size:24px;
+  font-size:26px;
 
   font-family:var(--font-serif);
 
-  margin-bottom:22px;
+  margin-bottom:24px;
 
 }
 
@@ -920,9 +1033,9 @@ MODAL
 
   font-weight:700;
 
-  text-transform:uppercase;
-
   color:var(--text2);
+
+  text-transform:uppercase;
 
 }
 
@@ -930,13 +1043,15 @@ MODAL
 
   width:100%;
 
-  padding:14px;
-
   border:none;
 
   background:var(--gray);
 
-  border-radius:14px;
+  padding:15px;
+
+  border-radius:16px;
+
+  font-size:15px;
 
 }
 
@@ -948,7 +1063,7 @@ MODAL
 
   gap:12px;
 
-  margin-top:22px;
+  margin-top:24px;
 
 }
 
@@ -965,7 +1080,7 @@ TOAST
 
   transform:translateX(-50%);
 
-  background:rgba(23,36,62,.96);
+  background:rgba(20,33,61,.95);
 
   color:#fff;
 
@@ -975,7 +1090,9 @@ TOAST
 
   display:none;
 
-  z-index:9999;
+  z-index:99999;
+
+  box-shadow:var(--shadow-lg);
 
 }
 
@@ -996,7 +1113,11 @@ POINTAGE
     <div class="header-top">
 
       <div class="logo">
-        ⏱
+
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm.5 5h-1.5v6l5 3 .75-1.23-4.25-2.52z"/>
+        </svg>
+
       </div>
 
       <div>
@@ -1035,6 +1156,8 @@ POINTAGE
     </div>
 
   </div>
+
+  <!-- TIMER -->
 
   <div class="card timer-card">
 
@@ -1082,6 +1205,8 @@ POINTAGE
 
   </div>
 
+  <!-- STATS -->
+
   <div class="stats">
 
     <div class="card stat blue">
@@ -1102,7 +1227,7 @@ POINTAGE
     <div class="card stat red">
 
       <div class="stat-label">
-        Semaine
+        Cette semaine
       </div>
 
       <div class="stat-value"
@@ -1138,16 +1263,16 @@ HISTORIQUE
     <button class="add-btn"
             onclick="openModal()">
 
-      +
+      <svg viewBox="0 0 24 24">
+        <path d="M19 11H13V5h-2v6H5v2h6v6h2v-6h6z"/>
+      </svg>
 
     </button>
 
   </div>
 
   <div class="sessions"
-       id="sessions">
-
-  </div>
+       id="sessions"></div>
 
 </div>
 
@@ -1162,20 +1287,20 @@ CONTRAT
     Contrat
   </div>
 
-  <div class="card contract">
+  <div class="card contract-card">
 
     <div class="contract-top">
 
       <div>
 
-        <div style="font-size:20px;font-weight:700">
-          Contrat actuel
+        <div style="font-size:22px;font-weight:700">
+          Solde actuel
         </div>
 
         <div style="
           font-size:13px;
           color:var(--text2);
-          margin-top:3px;
+          margin-top:4px;
         ">
           Heures supplémentaires / déficit
         </div>
@@ -1191,33 +1316,27 @@ CONTRAT
 
     </div>
 
-    <div class="contract-solde">
+    <div class="solde-label">
+      Balance contrat
+    </div>
 
-      <div class="contract-solde-label">
-        Solde actuel
-      </div>
+    <div class="solde-value"
+         id="soldeValue">
 
-      <div class="contract-solde-value"
-           id="soldeValue">
-
-        0h00
-
-      </div>
+      0h00
 
     </div>
 
     <div class="progress">
-
       <div class="progress-bar"
            id="progressBar"></div>
-
     </div>
 
   </div>
 
   <div class="settings">
 
-    <div class="setting">
+    <div class="card setting">
 
       <label>
         Heures contrat / semaine
@@ -1229,7 +1348,7 @@ CONTRAT
 
     </div>
 
-    <div class="setting">
+    <div class="card setting">
 
       <label>
         Solde actuel (heures)
@@ -1253,17 +1372,21 @@ CONTRAT
 </div>
 
 <!-- =========================================================
-NAV
+NAVBAR
 ========================================================= -->
 
 <div class="nav">
 
   <div class="nav-item active"
-       onclick="goTo('pointage')"
-       id="nav-pointage">
+       id="nav-pointage"
+       onclick="goTo('pointage')">
 
     <div class="nav-icon">
-      ⏱
+
+      <svg viewBox="0 0 24 24">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm.5 5h-1.5v6l5 3 .75-1.23-4.25-2.52z"/>
+      </svg>
+
     </div>
 
     <div>
@@ -1273,11 +1396,15 @@ NAV
   </div>
 
   <div class="nav-item"
-       onclick="goTo('history')"
-       id="nav-history">
+       id="nav-history"
+       onclick="goTo('history')">
 
     <div class="nav-icon">
-      📚
+
+      <svg viewBox="0 0 24 24">
+        <path d="M13 3a9 9 0 1 0 8.95 10h-2.02A7 7 0 1 1 13 5v4l5-5-5-5v4z"/>
+      </svg>
+
     </div>
 
     <div>
@@ -1287,11 +1414,15 @@ NAV
   </div>
 
   <div class="nav-item"
-       onclick="goTo('contract')"
-       id="nav-contract">
+       id="nav-contract"
+       onclick="goTo('contract')">
 
     <div class="nav-icon">
-      📄
+
+      <svg viewBox="0 0 24 24">
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5c0-1.1-.9-2-2-2zm-1 14H6v-2h12v2zm0-4H6v-2h12v2zm0-4H6V7h12v2z"/>
+      </svg>
+
     </div>
 
     <div>
@@ -1373,15 +1504,15 @@ MODAL
 STATE
 ========================================================= */
 
-let sessions=
-JSON.parse(localStorage.getItem('ultimate_sessions')||'[]');
+let sessions =
+JSON.parse(localStorage.getItem('premium_sessions') || '[]');
 
-let current=
-JSON.parse(localStorage.getItem('ultimate_current')||'null');
+let current =
+JSON.parse(localStorage.getItem('premium_current') || 'null');
 
-let settings=
-JSON.parse(localStorage.getItem('ultimate_settings')||'null')
-||{
+let settings =
+JSON.parse(localStorage.getItem('premium_settings') || 'null')
+|| {
   weeklyHours:39,
   balance:0
 };
@@ -1447,7 +1578,7 @@ function startShift(){
   };
 
   localStorage.setItem(
-    'ultimate_current',
+    'premium_current',
     JSON.stringify(current)
   );
 
@@ -1485,7 +1616,7 @@ function stopShift(){
 
   current=null;
 
-  localStorage.removeItem('ultimate_current');
+  localStorage.removeItem('premium_current');
 
   clearInterval(timerInterval);
 
@@ -1620,11 +1751,11 @@ function renderContract(){
     document.getElementById('soldeValue');
 
   el.innerText=
-    (diff>=0?'+':'-')
+    (diff>=0?'+':'−')
     +formatShort(Math.abs(diff));
 
   el.className=
-    'contract-solde-value '
+    'solde-value '
     +(diff>=0?'pos':'neg');
 
   document.getElementById('progressBar')
@@ -1649,7 +1780,7 @@ function saveContract(){
     )||0;
 
   localStorage.setItem(
-    'ultimate_settings',
+    'premium_settings',
     JSON.stringify(settings)
   );
 
@@ -1673,10 +1804,10 @@ function renderSessions(){
     el.innerHTML=`
       <div style="
         text-align:center;
-        color:var(--text3);
         padding:30px;
+        color:var(--text3);
       ">
-        Aucune session
+        Aucune session enregistrée
       </div>
     `;
 
@@ -1832,9 +1963,10 @@ function saveModal(){
   const endDate=
     new Date(date+'T'+end);
 
-  const sec=Math.floor(
-    (endDate-startDate)/1000
-  );
+  const sec=
+    Math.floor(
+      (endDate-startDate)/1000
+    );
 
   sessions.unshift({
 
@@ -1865,7 +1997,7 @@ SAVE
 function saveSessions(){
 
   localStorage.setItem(
-    'ultimate_sessions',
+    'premium_sessions',
     JSON.stringify(sessions)
   );
 
